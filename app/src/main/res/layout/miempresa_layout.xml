@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:text="VLSP Inventaios"
+        android:textSize="20dp"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/imgShow"
+        android:src="@drawable/logoempresa"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <EditText
+        android:id="@+id/imgEmpresa"
+        android:hint="Buscar Imagen desde dispositivo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/txtNombre"
+        android:hint="Nombre de la empresa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/txtRurbo"
+        android:hint="Rubro de la empresa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/txtTel"
+        android:hint="Teléfono"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnTerminar"
+        android:text="Terminar"
+        android:layout_width="match_parent"
+        android:background="@drawable/shape_button"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
