@@ -9,11 +9,11 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.4'
 
-        compile fileTree(dir: 'libs', include: ['*.jar'])
+        //classpath fileTree(dir: 'libs', include: ['*.jar'])
 
-        compile 'com.android.support:appcompat-v7:23.1.1'
+        //classpath 'com.android.support:appcompat-v7:23.1.1'
 
-        compile project('libs/jtds-1.2.1.jar') // Add this line to your dependencies
+        //compile project('libs/jtds-1.2.1.jar') // Add this line to your dependencies
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

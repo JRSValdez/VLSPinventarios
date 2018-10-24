@@ -39,7 +39,7 @@
         android:text="Iniciar Sesión"
         android:background="@drawable/shape_button"
         android:layout_width="match_parent"
-
+        android:onClick="iniciar"
         android:layout_height="wrap_content" />
 
     <TextView

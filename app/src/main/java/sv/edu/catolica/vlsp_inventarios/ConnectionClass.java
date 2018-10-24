@@ -10,8 +10,8 @@ import java.sql.SQLException;
 
 public class ConnectionClass {
     String ip = "vlspinventarios.mssql.somee.com";
-    String db = "vlspinventaios";
-    String un = "jrsvaldez";
+    String db = "vlspinventarios";
+    String un = "jrsvaldez_SQLLogin_1";
     String password = "t5e6mxhavv";
 
     @SuppressLint("NewApi")
