@@ -5,14 +5,84 @@
     android:layout_height="match_parent"
     tools:context=".Misproductos">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Ventas"
-        android:layout_gravity="center"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        />
+        android:padding="20dp">
 
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="Realizar Ventas"
+                android:textSize="20dp"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/imgShow"
+                android:src="@drawable/producto"
+                android:layout_width="match_parent"
+                android:layout_height="160dp" />
+
+            <LinearLayout
+                android:id="@+id/lnlProductoVenta"
+                android:padding="5dp"
+                android:background="#d5d5d5"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/nameP"
+                    android:text="Galaxy S9"
+                    android:textSize="20dp"
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/imgP"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp" />
+                <TextView
+                    android:id="@+id/precioP"
+                    android:text="Precio: $12000"
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/descP"
+                    android:layout_marginTop="8dp"
+                    android:text="Descripcion"
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Cantidad:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <Spinner
+                        android:id="@+id/spnCant"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp">
+                    </Spinner>
+                    <Button
+                        android:id="@+id/btnOk"
+                        android:background="@drawable/icon_check"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>
