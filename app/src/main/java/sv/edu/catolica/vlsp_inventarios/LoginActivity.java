@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "LIIIIIISTOOOOO.mp3", Toast.LENGTH_LONG).show();
             //Intent intent = new Intent(LoginActivity.this, Configuracion.class);
             //startActivity(intent);
+            startActivity(new Intent(this,MainActivity.class));
         }
         else{
             Toast.makeText(this, "NOUUUUUUUUUUUUU", Toast.LENGTH_LONG).show();
