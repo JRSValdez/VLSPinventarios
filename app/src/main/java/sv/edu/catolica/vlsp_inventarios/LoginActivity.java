@@ -1,6 +1,7 @@
 package sv.edu.catolica.vlsp_inventarios;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,12 +22,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void iniciar(View v){
+
+
         if(this.conn.CONN() != null){
             Toast.makeText(this, "LIIIIIISTOOOOO.mp3", Toast.LENGTH_LONG).show();
-            //Intent intent = new Intent(LoginActivity.this, Configuracion.class);
-            //startActivity(intent);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
             startActivity(new Intent(this,MainActivity.class));
-        }
+            }
         else{
             Toast.makeText(this, "NOUUUUUUUUUUUUU", Toast.LENGTH_LONG).show();
         }

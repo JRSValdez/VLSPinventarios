@@ -9,10 +9,6 @@
             android:icon="@drawable/ic_color_lens_black_24dp"
             android:title="Dashboard" />
         <item
-            android:id="@+id/nav_mis_productos"
-            android:icon="@drawable/ic_card_travel_black_24dp"
-            android:title="Mis productos" />
-        <item
             android:id="@+id/nav_ver_productos"
             android:icon="@drawable/ic_description_black_24dp"
             android:title="Ver productos" />
@@ -24,6 +20,10 @@
             android:id="@+id/nav_ventas"
             android:icon="@drawable/ic_attach_money_black_24dp"
             android:title="Ventas" />
+        <item
+            android:id="@+id/nav_compras"
+            android:icon="@drawable/ic_attach_money_black_24dp"
+            android:title="Compras" />
     </group>
 
     <item android:title="otros">

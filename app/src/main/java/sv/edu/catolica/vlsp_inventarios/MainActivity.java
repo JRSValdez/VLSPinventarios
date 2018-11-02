@@ -1,11 +1,7 @@
 package sv.edu.catolica.vlsp_inventarios;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,13 +13,13 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+public Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-  //     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-    //    setSupportActionBar(toolbar);
+       toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -33,14 +29,14 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
-
+*/
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-*/
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_config);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -81,12 +77,9 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
 
         FragmentManager fm=getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.contenedor,new Misproductos()).commit();
         int id = item.getItemId();
         fm.beginTransaction().replace(R.id.contenedor,new Configuracion()).commit();
-        if (id == R.id.nav_mis_productos) {
-            fm.beginTransaction().replace(R.id.contenedor,new Misproductos()).commit();
-        } else if (id == R.id.nav_ver_productos) {
+        if (id == R.id.nav_ver_productos) {
             fm.beginTransaction().replace(R.id.contenedor,new VerProductos()).commit();
         } else if (id == R.id.nav_agregar_productos) {
             fm.beginTransaction().replace(R.id.contenedor,new AgregarProductos()).commit();
