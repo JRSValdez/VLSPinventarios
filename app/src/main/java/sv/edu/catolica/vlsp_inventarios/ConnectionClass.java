@@ -6,7 +6,12 @@ import android.util.Log;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
+import Clases.Usuario;
 
 public class ConnectionClass {
     String ip = "vlspinventarios.mssql.somee.com";
@@ -14,11 +19,12 @@ public class ConnectionClass {
     String un = "jrsvaldez_SQLLogin_1";
     String password = "t5e6mxhavv";
 
+    Connection conn = null;
+
     @SuppressLint("NewApi")
     public Connection CONN() {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        Connection conn = null;
         String ConnURL = null;
 
         try {
@@ -42,4 +48,26 @@ public class ConnectionClass {
 
         return conn;
     }
+
+    public Usuario iniciar_sesion(Usuario _user) throws SQLException {
+        String query = "SELECT idEmpresa, user_user, user_password FROM USUARIO WHERE user_user = ? AND user_password = ?";
+        PreparedStatement st = null;
+        st = this.conn.prepareStatement(query); //ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY
+        st.setString(1,_user.usario);
+        st.setString(2,_user.pass);
+        ResultSet rs = st.executeQuery();
+
+        String user = "";
+        String contra = "";
+        while(rs.next()){
+            _user.idEmpresa = rs.getInt(1);
+            user = rs.getString(2);
+            contra = rs.getString(3);
+        }
+
+        if(user.equals(_user.usario) && contra.equals(_user.pass)){
+            return _user;
+        } else return _user;
+    }
+
 }
