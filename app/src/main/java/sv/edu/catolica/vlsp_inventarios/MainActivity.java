@@ -10,6 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import Clases.Usuario;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -38,6 +42,15 @@ public Toolbar toolbar;
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Usuario user = (Usuario) getIntent().getSerializableExtra("user");
+
+        View hView =  navigationView.getHeaderView(0);
+        TextView nav_emp = (TextView)hView.findViewById(R.id.txtEmpresa);
+        nav_emp.setText(String.valueOf((user.empresa)));
+
+        TextView nav_user = (TextView)hView.findViewById(R.id.txtUser);
+        nav_user.setText(user.nombre);
     }
 
     @Override

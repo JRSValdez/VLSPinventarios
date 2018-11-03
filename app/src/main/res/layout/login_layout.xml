@@ -15,21 +15,23 @@
         android:textStyle="bold" />
 
     <ImageView
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:layout_gravity="center"
         android:background="@drawable/login"
-        android:layout_width="175dp">
+        android:layout_width="100dp">
 
     </ImageView>
 
     <EditText
         android:id="@+id/txtUser"
+        android:text="jeffry"
         android:hint="Ingrese Usuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/txtPass"
+        android:text="jr2020"
         android:hint="Ingrese Contraseña"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
