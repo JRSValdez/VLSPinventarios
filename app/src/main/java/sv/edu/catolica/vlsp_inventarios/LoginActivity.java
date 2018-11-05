@@ -38,10 +38,12 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra("user", user);
                 startActivity(intent);
-            } else Toast.makeText(this, "Usuario incorrecto", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this, "Usuario incorrecto", Toast.LENGTH_SHORT).show();
+            }
         }
         else{
-            Toast.makeText(this, "NOUUUUUUUUUUUUU", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Revise su conexión", Toast.LENGTH_LONG).show();
         }
     }
 }
