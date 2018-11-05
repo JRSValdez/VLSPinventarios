@@ -28,22 +28,17 @@
             android:layout_width="match_parent"
             android:layout_height="200dp" />
 
-        <EditText
-            android:id="@+id/imgEmpresa"
-            android:hint="Buscar Imagen desde dispositivo"
+        <Button
+            android:id="@+id/imgProd"
+            android:hint="Buscar Imagen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
 
         <EditText
+            android:text="holaaaa"
             android:id="@+id/txtPnombre"
             android:hint="Nombre del producto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <EditText
-            android:id="@+id/txtPid"
-            android:hint="ID automático o manual"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -54,6 +49,14 @@
         </Spinner>
 
         <EditText
+            android:text="hiiiiiiiii"
+            android:id="@+id/txtPdescrip"
+            android:hint="Descripción"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:text="15.00"
             android:id="@+id/txtCant"
             android:hint="Cantidad"
             android:inputType="numberDecimal"
@@ -61,6 +64,7 @@
             android:layout_height="wrap_content" />
 
         <EditText
+            android:text="15.00"
             android:id="@+id/txtPcosto"
             android:hint="Costo"
             android:inputType="numberDecimal"
@@ -68,6 +72,7 @@
             android:layout_height="wrap_content" />
 
         <EditText
+            android:text="15.00"
             android:id="@+id/txtPprecio"
             android:inputType="numberDecimal"
             android:hint="Precio de venta"
@@ -75,6 +80,7 @@
             android:layout_height="wrap_content" />
 
         <EditText
+            android:text="05/05/05"
             android:id="@+id/txtPvence"
             android:inputType="date"
             android:hint="Fecha de vencimiento"
