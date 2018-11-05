@@ -56,23 +56,27 @@
         <EditText
             android:id="@+id/txtCant"
             android:hint="Cantidad"
+            android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/txtPcosto"
             android:hint="Costo"
+            android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/txtPprecio"
+            android:inputType="numberDecimal"
             android:hint="Precio de venta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/txtPvence"
+            android:inputType="date"
             android:hint="Fecha de vencimiento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

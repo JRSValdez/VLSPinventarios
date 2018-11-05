@@ -33,6 +33,7 @@
         android:id="@+id/txtPass"
         android:text="jr2020"
         android:hint="Ingrese Contraseña"
+        android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
