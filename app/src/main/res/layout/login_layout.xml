@@ -17,7 +17,7 @@
     <ImageView
         android:layout_height="100dp"
         android:layout_gravity="center"
-        android:background="@drawable/login"
+        android:src="@drawable/login"
         android:layout_width="100dp">
 
     </ImageView>
@@ -40,7 +40,6 @@
     <Button
         android:id="@+id/btnLogin"
         android:text="Iniciar Sesión"
-        android:background="@drawable/shape_button"
         android:layout_width="match_parent"
         android:onClick="iniciar"
         android:layout_height="wrap_content" />
