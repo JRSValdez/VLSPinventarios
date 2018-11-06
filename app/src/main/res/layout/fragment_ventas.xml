@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/nameP"
+                    android:id="@+id/tvnameP"
                     android:text="Galaxy S9"
                     android:textSize="20dp"
                     android:gravity="center_horizontal"
@@ -50,13 +50,13 @@
                     android:layout_width="125dp"
                     android:layout_height="125dp" />
                 <TextView
-                    android:id="@+id/precioP"
+                    android:id="@+id/tvprecioP"
                     android:text="Precio: $12000"
                     android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:id="@+id/descP"
+                    android:id="@+id/tvdescP"
                     android:layout_marginTop="8dp"
                     android:text="Descripcion"
                     android:gravity="center_horizontal"
@@ -64,23 +64,51 @@
                     android:layout_height="wrap_content" />
                 <LinearLayout
                     android:gravity="center_horizontal"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <TextView
-                        android:text="Cantidad:"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+
                     <Spinner
-                        android:id="@+id/spnCant"
+                        android:id="@+id/spProductos"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp">
                     </Spinner>
+                    <LinearLayout
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cantidad:"
+                            />
+                    <EditText
+                        android:id="@+id/etCantidad"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:inputType="number"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
                     <Button
                         android:id="@+id/btnOk"
-                        android:background="@drawable/icon_check"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Agregar"
+                        />
+                        <Button
+                            android:id="@+id/btnDetalle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Detalle>>"/>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
