@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -108,9 +109,14 @@ if (productoInfo.get(IndSelected).producto_stock> Integer.parseInt(etCantidad.ge
             @Override
             public void onClick(View view) {
 if (lsProdVenta.size()>0){
-                Intent intent = new Intent(getContext(), MainActivity.class);
-                intent.putExtra("productos", lsProdVenta);
-                startActivity(intent);
+
+             Intent intent = new Intent(getActivity(), VentasFin2.class);
+    intent.putParcelableArrayListExtra("productos",  lsProdVenta);
+             getActivity().startActivity(intent);
+
+
+
+
 }else{
 
     Toast.makeText(getContext(), "No hay items aún",Toast.LENGTH_SHORT).show();

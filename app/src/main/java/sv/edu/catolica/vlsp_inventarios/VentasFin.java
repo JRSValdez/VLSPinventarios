@@ -40,11 +40,13 @@ public class VentasFin extends Fragment {
         super.onActivityCreated(savedInstanceState);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        ArrayList<ProductoModel> lsVenta = (ArrayList<ProductoModel>) getActivity().getIntent().getSerializableExtra("productos");
 
-        String xd=lsVenta.get(0).producto_name.toString();
 
-      Toast.makeText(getActivity(), xd,Toast.LENGTH_SHORT).show();
+     //   ArrayList<ProductoModel> lsVenta = (ArrayList<ProductoModel>) getActivity().getIntent().getSerializableExtra("productos");
+
+      //  String xd=lsVenta.get(0).producto_name.toString();
+
+     // Toast.makeText(getActivity(), xd,Toast.LENGTH_SHORT).show();
     }
 
 
