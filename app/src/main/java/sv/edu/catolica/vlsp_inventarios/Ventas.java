@@ -38,7 +38,7 @@ public class Ventas extends Fragment {
     Connection conn = ConexionDB.CONN();
 
     Spinner ProductList;
-    Button btnOK, btnDetalle;
+    Button btnOK, btnEliminar;
     EditText etCantidad;
     TextView tvnombre,tvprecio,tvdescrip;
     ArrayList<ProductoModel> productoInfo=new ArrayList<>();
@@ -91,7 +91,7 @@ public class Ventas extends Fragment {
 
         ProductList=(Spinner)getView().findViewById(R.id.spProductos);
         btnOK=(Button)getView().findViewById(R.id.btnOk);
-        btnDetalle=(Button)getView().findViewById(R.id.btnDetalle);
+        btnEliminar=(Button)getView().findViewById(R.id.btnEliminar);
         tvnombre=(TextView) getView().findViewById(R.id.tvnameP);
         tvdescrip=(TextView) getView().findViewById(R.id.tvdescP);
         tvprecio=(TextView) getView().findViewById(R.id.tvprecioP);
@@ -182,22 +182,58 @@ public class Ventas extends Fragment {
     //jajaja
 
 
-        btnDetalle.setOnClickListener(new View.OnClickListener() {
+        btnEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 if (lsProdVenta.size()>0){
+  //  tbProductos.removeAllViews();
+    int cant=Integer.parseInt(etCantidad.getText().toString());
+    boolean producoExistente=false;
+    int pd=-1;
+    String itemS= ProductList.getSelectedItem().toString();
 
-             Intent intent = new Intent(getActivity(), VentasFin2.class);
-    intent.putParcelableArrayListExtra("productos",  lsProdVenta);
-             getActivity().startActivity(intent);
+    for (int j=0; j<lsProdVenta.size();j++) {
+        if (itemS.equals(productoInfo.get(j).producto_name) && productoInfo.get(j).producto_stock>cant ) {
+            productoInfo.get(j).cant=productoInfo.get(j).cant-cant;
+            pd=j;
+        }
+    }
 
+    //////////////////////////////////////
+    tbProductos.removeAllViews();
+    for (int x = 0; x < lsProdVenta.size(); x++) {
 
+        TableRow row = new TableRow(getContext());
+        int id = lsProdVenta.get(x).idProducto;
+        String nomb = lsProdVenta.get(x).producto_name;
+        String desc = lsProdVenta.get(x).producto_desc;
+        String price = Double.toString(lsProdVenta.get(x).producto_price);
+        int cantidad= lsProdVenta.get(x).cant;
+        TextView tvid = new TextView(getContext());
+        tvid.setText("" + id);
+        TextView tvNomb = new TextView(getContext());
+        tvNomb.setText("" + nomb);
+        TextView tvPrice = new TextView(getContext());
+        tvPrice.setText(" $" + price);
+        TextView tvCant = new TextView(getContext());
+        tvCant.setText("" + cantidad);
 
+        row.addView(tvid);
+        row.addView(tvNomb);
+        row.addView(tvPrice);
+        row.addView(tvCant);
+        tbProductos.addView(row);
 
-}else{
+        total = total + (lsProdVenta.get(x).producto_price * cantidad);
+    }
+    tvTotal.setText("Total de la venta: $" + total);
+    total=0;
+    Toast.makeText(getContext(), "Item borrado",Toast.LENGTH_SHORT).show();
+    /////////////////////////////////////
 
-    Toast.makeText(getContext(), "No hay items aún",Toast.LENGTH_SHORT).show();
 }
+
+
             }
         });
 
