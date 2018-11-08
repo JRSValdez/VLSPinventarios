@@ -114,7 +114,9 @@ public Toolbar toolbar;
         } else if (id == R.id.nav_configuracion) {
             fm.beginTransaction().replace(R.id.contenedor,new Configuracion()).commit();
         } else if (id == R.id.nav_ventas) {
-            fm.beginTransaction().replace(R.id.contenedor,new Ventas()).commit();
+            Ventas fragobj=new Ventas();
+            fragobj.setArguments(bundle);
+            fm.beginTransaction().replace(R.id.contenedor,fragobj).commit();
         } else if (id == R.id.nav_usuarios) {
             fm.beginTransaction().replace(R.id.contenedor,new Usuarios()).commit();
         } else if (id == R.id.nav_dashboard) {

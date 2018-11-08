@@ -56,7 +56,7 @@ public class Ventas extends Fragment {
     public List<String> Obt_Productos(){
         List<String> values = new ArrayList<>();
         try{
-            String query="SELECT * FROM producto WHERE idEmpresa=1";
+            String query="SELECT * FROM producto WHERE idEmpresa="+idEmpresa;
             Statement st=conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()){
@@ -80,7 +80,7 @@ public class Ventas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       // idEmpresa = getArguments().getInt("idEmpresa");
+        idEmpresa = getArguments().getInt("idEmpresa");
         return inflater.inflate(R.layout.fragment_ventas, container, false);
     }
 
@@ -108,7 +108,6 @@ public class Ventas extends Fragment {
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
          tbProductos.removeAllViews();
          int suma=0;
          boolean producoExistente=false;
@@ -172,7 +171,6 @@ public class Ventas extends Fragment {
     Toast.makeText(getContext(), "Stock Insuficiente",Toast.LENGTH_SHORT).show();
 }
 
-//aqui va el fucking corchete
             }
         });
 
@@ -236,8 +234,6 @@ if (lsProdVenta.size()>0){
 }else {
     Toast.makeText(getContext(),"lista vacia", Toast.LENGTH_SHORT).show();
 }
-
-
             }
         });
 
@@ -248,9 +244,6 @@ if (lsProdVenta.size()>0){
                 if(lsProdVenta.size()>0){
                     lsProdVenta.removeAll(lsProdVenta);
                     tbProductos.removeAllViews();
-
-
-
 
                     total=0;
                     tvTotal.setText("Total de la venta: $" + total);
@@ -274,7 +267,7 @@ if (lsProdVenta.size()>0){
                 int idv=-2;
                 if(lsProdVenta.size()>0){
                     try{
-                        String query = "Insert into ventas (idEmpresa,venta_date,venta_total) values (1,'"+date+"',"+totalV+")";
+                        String query = "Insert into ventas (idEmpresa,venta_date,venta_total) values ("+idEmpresa+",'"+date+"',"+totalV+")";
                         PreparedStatement pst=conn.prepareStatement(query);
                         pst.executeUpdate();
 
@@ -283,13 +276,14 @@ if (lsProdVenta.size()>0){
                         for (int x = 0; x < lsProdVenta.size(); x++) {
                             subtotal=lsProdVenta.get(x).cant*lsProdVenta.get(x).producto_price;
                             String query2 = "insert into det_venta (idEmpresa,idVenta, idProducto,cantidad, subtotal) values "+
-                            "(1,"+idv+","+lsProdVenta.get(x).idProducto+","+lsProdVenta.get(x).cant+","+subtotal+")";
+                            "("+idEmpresa+","+idv+","+lsProdVenta.get(x).idProducto+","+lsProdVenta.get(x).cant+","+subtotal+")";
                             PreparedStatement pst2=conn.prepareStatement(query2);
                             pst2.executeUpdate();
 
                             // disminuyendo Stock
 
-                            String query3="update PRODUCTO set producto_stock=producto_stock-"+lsProdVenta.get(x).cant+" where idProducto="+lsProdVenta.get(x).idProducto;
+                            String query3="update PRODUCTO set producto_stock=producto_stock-"+lsProdVenta.get(x).cant+
+                                    " where idProducto="+lsProdVenta.get(x).idProducto +" and idEmpresa="+idEmpresa;
                             PreparedStatement pst3=conn.prepareStatement(query3);
                             pst3.executeUpdate();
                         }
