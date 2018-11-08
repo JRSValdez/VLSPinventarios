@@ -94,7 +94,7 @@ public class AgregarProductos extends Fragment {
                 PrecioV=Double.parseDouble(PrecioVentaP.getText().toString());
                 try{
                     String query = "INSERT INTO PRODUCTO (idEmpresa,idCat,producto_name,producto_stock,producto_price,producto_cost,producto_desc,producto_exp_date) VALUES " +
-                            "("+idEmpresa+",'"+idCat+",'"+Nombre+"',"+Stock+","+PrecioV+","+Costo+",'"+Descrip+"','"+FechaV+"')";
+                            "("+idEmpresa+","+idCat+",'"+Nombre+"',"+Stock+","+PrecioV+","+Costo+",'"+Descrip+"','"+FechaV+"')";
                     PreparedStatement pst=cn.prepareStatement(query);
                     pst.executeUpdate();
                     Toast.makeText(getActivity(), "Registro agregado con éxito", Toast.LENGTH_SHORT).show();

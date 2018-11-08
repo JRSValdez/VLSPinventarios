@@ -51,6 +51,7 @@
     <TextView
         android:layout_width="match_parent"
         android:text="Crear Cuenta"
+        android:onClick="registrar"
         android:gravity="center"
         android:textStyle="bold"
         android:layout_height="wrap_content" />

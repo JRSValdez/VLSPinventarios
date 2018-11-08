@@ -46,4 +46,9 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Revise su conexión", Toast.LENGTH_LONG).show();
         }
     }
+
+    public void registrar(View view){
+        Intent intent = new Intent(this, RegistrarEmpresa.class);
+        startActivity(intent);
+    }
 }
