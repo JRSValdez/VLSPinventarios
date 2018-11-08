@@ -1,18 +1,24 @@
 package sv.edu.catolica.vlsp_inventarios;
 
-import android.content.Intent;
-import android.database.DataSetObserver;
-import android.graphics.ColorSpace;
+import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import java.lang.reflect.Field;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -24,6 +30,8 @@ import Clases.ProductListAdapter;
 public class ListarProductos extends Fragment {
 
     int idEmpresa;
+    ListView listView;
+    public int[] idPros;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,18 +59,30 @@ public class ListarProductos extends Fragment {
             Statement st = conn.createStatement();
 
             idEmpresa = (int)getArguments().getInt("idEmpresa");
+            String query = "select p.idProducto, p.producto_name, p.producto_stock, c.cat_name from producto p " +
+                    " inner join categoria c on c.idCat = p.idCat where p.idEmpresa = ?";
 
-            ResultSet rs = st.executeQuery( "select p.idProducto, p.producto_name, p.producto_stock, c.cat_name from producto p " +
-                    " inner join categoria c on c.idCat = p.idCat where p.idEmpresa = "+ idEmpresa );
+            PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            preparedStatement.setInt(1, idEmpresa);
+            ResultSet rs = preparedStatement.executeQuery();
 
-            while ( rs.next() )
-            {
-                ClassListProductsItems obj = new ClassListProductsItems();
-                obj.id = ( rs.getInt( 1 ) );
-                obj.producto  =  ( rs.getString( 2 ) );
-                obj.cantidad = ( rs.getFloat( 3 ) );
-                obj.categoria  =  ( rs.getString( 4 ) );
-                arrayList.add( obj );
+            rs.last();
+            int numRows = rs.getRow();
+            rs.beforeFirst();
+
+            if(numRows > 0) {
+                int con = 0;
+                this.idPros = new int[numRows];
+                while (rs.next()) {
+                    ClassListProductsItems obj = new ClassListProductsItems();
+                    obj.id = (rs.getInt(1));
+                    this.idPros[con] = obj.id;
+                    obj.producto = (rs.getString(2));
+                    obj.cantidad = (rs.getFloat(3));
+                    obj.categoria = (rs.getString(4));
+                    arrayList.add(obj);
+                    con++;
+                }
             }
 
         }
@@ -74,7 +94,27 @@ public class ListarProductos extends Fragment {
         ProductListAdapter arrayAdapter;
         arrayAdapter = new ProductListAdapter(getContext(), arrayList);
         listView.setAdapter(arrayAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                int idPro = idPros[i];
+
+                EditarProducto nextFrag= new EditarProducto();
+
+                Bundle bundle=new Bundle();
+
+                bundle.putInt("idPro", idPro);
+                bundle.putInt("idEmpresa", idEmpresa);
+
+                nextFrag.setArguments(bundle);
+
+                getActivity().getSupportFragmentManager().beginTransaction()
+                      .replace(R.id.contenedor, nextFrag)
+                    .commit();
+
+            }
+        });
+
     }
-
-
 }

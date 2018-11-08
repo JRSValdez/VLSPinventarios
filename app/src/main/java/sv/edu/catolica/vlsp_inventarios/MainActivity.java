@@ -99,20 +99,18 @@ public Toolbar toolbar;
     public boolean onNavigationItemSelected(MenuItem item) {
 
         FragmentManager fm=getSupportFragmentManager();
+        Bundle bundle=new Bundle();
+        bundle.putInt("idEmpresa", user.idEmpresa);
         int id = item.getItemId();
         fm.beginTransaction().replace(R.id.contenedor,new Configuracion()).commit();
         if (id == R.id.nav_ver_productos) {
-            //
-
-            Bundle bundle=new Bundle();
-            bundle.putInt("idEmpresa", user.idEmpresa);
-            //set Fragmentclass Arguments
             ListarProductos fragobj=new ListarProductos();
             fragobj.setArguments(bundle);
-
             fm.beginTransaction().replace(R.id.contenedor, fragobj).commit();
         } else if (id == R.id.nav_agregar_productos) {
-            fm.beginTransaction().replace(R.id.contenedor,new AgregarProductos()).commit();
+            AgregarProductos fragobj=new AgregarProductos();
+            fragobj.setArguments(bundle);
+            fm.beginTransaction().replace(R.id.contenedor,fragobj).commit();
         } else if (id == R.id.nav_configuracion) {
             fm.beginTransaction().replace(R.id.contenedor,new Configuracion()).commit();
         } else if (id == R.id.nav_ventas) {

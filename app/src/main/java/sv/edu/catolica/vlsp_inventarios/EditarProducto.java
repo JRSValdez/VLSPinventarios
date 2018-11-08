@@ -1,10 +1,10 @@
 package sv.edu.catolica.vlsp_inventarios;
 
-import android.*;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,22 +12,20 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import Clases.Categoria;
+import Clases.ClassListProductsItems;
 import Clases.Producto;
 
-public class AgregarProductos extends Fragment {
+public class EditarProducto extends Fragment {
     ConnectionClass con = new ConnectionClass();
     Connection cn = con.CONN();
 
@@ -38,7 +36,7 @@ public class AgregarProductos extends Fragment {
     float Stock;
     Double Costo, PrecioV;
 
-    int idEmpresa;
+    int idEmpresa, idPro;
 
     public List<String> ListS(){
         List<String> values = new ArrayList<>();
@@ -60,8 +58,9 @@ public class AgregarProductos extends Fragment {
         // Inflate the layout for this fragment
 
         idEmpresa = getArguments().getInt("idEmpresa");
-
-        return inflater.inflate(R.layout.fragment_agregarproductos, container, false);
+        idPro = getArguments().getInt("idPro");
+        Log.e("idpro",".-.-.-.-.-.-.-.--.---.-.----.--.-.-."+String.valueOf(idPro));
+        return inflater.inflate(R.layout.fragment_editarproductos, container, false);
     }
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -71,6 +70,7 @@ public class AgregarProductos extends Fragment {
 
         //------------------------------------------------------------
         NombreP=(EditText)getView().findViewById(R.id.txtPnombre);
+        NombreP.setText(String.valueOf(idPro));
         DescripP=(EditText)getView().findViewById(R.id.txtPdescrip);
         CantP=(EditText)getView().findViewById(R.id.txtCant);
         CostoP=(EditText)getView().findViewById(R.id.txtPcosto);
@@ -80,6 +80,9 @@ public class AgregarProductos extends Fragment {
         BtnImg=(Button)getView().findViewById(R.id.imgProd);
         Add=(Button)getView().findViewById(R.id.btnAggP);
         //------------------------------------------------------------
+
+        this.llenarDartos(idPro);
+
         Add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,6 +96,7 @@ public class AgregarProductos extends Fragment {
                 Costo=Double.parseDouble(CostoP.getText().toString());
                 PrecioV=Double.parseDouble(PrecioVentaP.getText().toString());
                 try{
+                    //cambiar consulta insert a consulta update
                     String query = "INSERT INTO PRODUCTO (idEmpresa,idCat,producto_name,producto_stock,producto_price,producto_cost,producto_desc,producto_exp_date) VALUES " +
                             "("+idEmpresa+",'"+idCat+",'"+Nombre+"',"+Stock+","+PrecioV+","+Costo+",'"+Descrip+"','"+FechaV+"')";
                     PreparedStatement pst=cn.prepareStatement(query);
@@ -109,4 +113,41 @@ public class AgregarProductos extends Fragment {
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ListaCategorias.setAdapter(dataAdapter);
     }
+
+    public void llenarDartos(int _idPro){
+        try
+        {
+            Statement st = cn.createStatement();
+
+            String query = "select * from producto p where p.idProducto = ?";
+
+            PreparedStatement preparedStatement = cn.prepareStatement(query);
+            preparedStatement.setInt(1, _idPro);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            Producto obj = new Producto();
+
+            while (rs.next()) {
+                obj.idProducto = (rs.getInt(2));
+                obj.producto = (rs.getString(4));
+                obj.cantidad = (rs.getFloat(5));
+                obj.precio = (rs.getFloat(6));
+                obj.costo = (rs.getFloat(7));
+                obj.descripcion = (rs.getString(8));
+                obj.Vencimiento = (rs.getString(9));
+            }
+
+            NombreP.setText(obj.producto);
+            DescripP.setText(obj.descripcion);
+            CantP.setText(String.valueOf(obj.cantidad));
+            CostoP.setText(String.valueOf(obj.costo));
+            PrecioVentaP.setText(String.valueOf(obj.precio));
+            FechaVencP.setText(String.valueOf(obj.Vencimiento));
+        }
+        catch ( Exception e )
+        {
+            e.printStackTrace();
+        }
+    }
+
 }

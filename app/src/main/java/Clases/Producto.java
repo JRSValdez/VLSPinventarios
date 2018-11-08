@@ -13,6 +13,9 @@ public class Producto implements Serializable{
     public String descripcion;
     public String Vencimiento;
 
+    public Producto(){
+
+    }
 
 
     public Producto(int _idEmp, int _idCat, String _nomb, float _cant, double _precio, double _costo, String _desc, String _exp){

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AgregarProductos">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="VLSP Inventaios"
+                android:textSize="20dp" />
+
+            <ImageView
+                android:id="@+id/imgShow"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/producto" />
+
+            <Button
+                android:id="@+id/imgProd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Buscar Imagen" />
+
+
+            <EditText
+                android:id="@+id/txtPnombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre del producto"
+                android:text="holaaaa" />
+
+            <Spinner
+                android:id="@+id/spnCat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></Spinner>
+
+            <EditText
+                android:id="@+id/txtPdescrip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Descripción"
+                android:text="hiiiiiiiii" />
+
+            <EditText
+                android:id="@+id/txtCant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Cantidad"
+                android:inputType="numberDecimal"
+                android:text="15.00" />
+
+            <EditText
+                android:id="@+id/txtPcosto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Costo"
+                android:inputType="numberDecimal"
+                android:text="15.00" />
+
+            <EditText
+                android:id="@+id/txtPprecio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Precio de venta"
+                android:inputType="numberDecimal"
+                android:text="15.00" />
+
+            <EditText
+                android:id="@+id/txtPvence"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Fecha de vencimiento"
+                android:inputType="date"
+                android:text="05/05/05" />
+
+            <Button
+                android:id="@+id/btnAggP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_button"
+                android:text="Editar Producto" />
+        </LinearLayout>
+
+    </ScrollView>
+</FrameLayout>

@@ -36,6 +36,9 @@ public class ProductListAdapter extends ArrayAdapter<ClassListProductsItems> {
 
         ClassListProductsItems currentPro = productList.get(position);
 
+        TextView id = (TextView) listItem.findViewById(R.id.txtId);
+        id.setText(String.valueOf(currentPro.id));
+
         TextView name = (TextView) listItem.findViewById(R.id.txtName);
         name.setText(currentPro.producto);
 
