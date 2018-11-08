@@ -185,7 +185,7 @@
                         android:text="Finalizar" />
 
                     <Button
-                        android:id="@+id/btnreiniciar"
+                        android:id="@+id/btnReiniciar"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
