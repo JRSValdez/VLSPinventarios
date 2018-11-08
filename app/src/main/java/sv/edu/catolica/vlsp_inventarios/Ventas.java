@@ -121,11 +121,7 @@ public class Ventas extends Fragment {
                         pd=j;
                     }
                 }
-                if(producoExistente==true && pd>-1){
-                    if(suma<productoInfo.get(pd).producto_stock){
-                        lsProdVenta.get(pd).cant=suma;
-                    }
-         }
+
                     if (productoInfo.get(IndSelected).producto_stock >= Integer.parseInt(etCantidad.getText().toString()) && etCantidad.getText().length() > 0) {
 
                         //Guardando registro seleccionado en la lista de productos a vender
@@ -142,11 +138,9 @@ public class Ventas extends Fragment {
                         String desc = lsProdVenta.get(x).producto_desc;
                         String price = Double.toString(lsProdVenta.get(x).producto_price);
                         int cant=0;
-                        if(producoExistente==true && lsProdVenta.get(pd).producto_name.equals(lsProdVenta.get(x).producto_name)){
-                        cant=suma;
-                        }else{
+
                         cant = lsProdVenta.get(x).cant;
-                        }
+                        
 
                         TextView tvid = new TextView(getContext());
                         tvid.setText("" + id);
