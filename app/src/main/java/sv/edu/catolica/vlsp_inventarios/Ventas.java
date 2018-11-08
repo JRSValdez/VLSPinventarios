@@ -56,7 +56,7 @@ public class Ventas extends Fragment {
     public List<String> Obt_Productos(){
         List<String> values = new ArrayList<>();
         try{
-            String query="SELECT * FROM producto WHERE idEmpresa="+idEmpresa;
+            String query="SELECT * FROM producto WHERE producto_stock>=1 and idEmpresa="+idEmpresa;
             Statement st=conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()){
@@ -108,16 +108,16 @@ public class Ventas extends Fragment {
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-         tbProductos.removeAllViews();
+
          int suma=0;
          boolean producoExistente=false;
          int pd=-1;
                 String itemS= ProductList.getSelectedItem().toString();
 
          for (int j=0; j<lsProdVenta.size();j++) {
-               if (itemS.equals(productoInfo.get(j).producto_name)) {
+               if (itemS.equals(lsProdVenta.get(j).producto_name)) {
                         producoExistente=true;
-                        suma=productoInfo.get(j).cant+Integer.parseInt(etCantidad.getText().toString());
+                        suma=lsProdVenta.get(j).cant+Integer.parseInt(etCantidad.getText().toString());
                         pd=j;
                     }
                 }
@@ -126,7 +126,7 @@ public class Ventas extends Fragment {
                         lsProdVenta.get(pd).cant=suma;
                     }
          }
-                    if (productoInfo.get(IndSelected).producto_stock > Integer.parseInt(etCantidad.getText().toString()) && etCantidad.getText().length() > 0) {
+                    if (productoInfo.get(IndSelected).producto_stock >= Integer.parseInt(etCantidad.getText().toString()) && etCantidad.getText().length() > 0) {
 
                         //Guardando registro seleccionado en la lista de productos a vender
                         if (producoExistente==false){
@@ -134,6 +134,7 @@ public class Ventas extends Fragment {
                         lsProdVenta.add(productoInfo.get(IndSelected));
                         }
                     //jajaja
+                        tbProductos.removeAllViews();
                     for (int x = 0; x < lsProdVenta.size(); x++) {
                         TableRow row = new TableRow(getContext());
                         int id = lsProdVenta.get(x).idProducto;
@@ -146,6 +147,7 @@ public class Ventas extends Fragment {
                         }else{
                         cant = lsProdVenta.get(x).cant;
                         }
+
                         TextView tvid = new TextView(getContext());
                         tvid.setText("" + id);
                         TextView tvNomb = new TextView(getContext());
@@ -336,8 +338,6 @@ if (lsProdVenta.size()>0){
             }
 
         });
-
-
 
         //------------------------------------------------------------
         ArrayAdapter<String> dataAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item,Obt_Productos());
