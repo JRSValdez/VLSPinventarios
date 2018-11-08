@@ -1,5 +1,7 @@
 package sv.edu.catolica.vlsp_inventarios;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
@@ -8,15 +10,22 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import Clases.ClassListProductsItems;
 import Clases.Usuario;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    public Usuario user ;
+
 public Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +52,7 @@ public Toolbar toolbar;
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Usuario user = (Usuario) getIntent().getSerializableExtra("user");
+       user = (Usuario) getIntent().getSerializableExtra("user");
 
         View hView =  navigationView.getHeaderView(0);
         TextView nav_emp = (TextView)hView.findViewById(R.id.txtEmpresa);
@@ -93,7 +102,15 @@ public Toolbar toolbar;
         int id = item.getItemId();
         fm.beginTransaction().replace(R.id.contenedor,new Configuracion()).commit();
         if (id == R.id.nav_ver_productos) {
-            fm.beginTransaction().replace(R.id.contenedor,new VerProductos()).commit();
+            //
+
+            Bundle bundle=new Bundle();
+            bundle.putInt("idEmpresa", user.idEmpresa);
+            //set Fragmentclass Arguments
+            ListarProductos fragobj=new ListarProductos();
+            fragobj.setArguments(bundle);
+
+            fm.beginTransaction().replace(R.id.contenedor, fragobj).commit();
         } else if (id == R.id.nav_agregar_productos) {
             fm.beginTransaction().replace(R.id.contenedor,new AgregarProductos()).commit();
         } else if (id == R.id.nav_configuracion) {
@@ -114,3 +131,5 @@ public Toolbar toolbar;
         return true;
     }
 }
+
+

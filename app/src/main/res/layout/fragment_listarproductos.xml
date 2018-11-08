@@ -5,73 +5,25 @@
     android:layout_height="match_parent"
     tools:context=".ListarProductos">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="20dp">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
-                android:text="Lista Productos"
+                android:text="Lista de productos"
                 android:textSize="20dp"
                 android:gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-            <LinearLayout
-                android:id="@+id/lnlProductoVenta"
-                android:padding="5dp"
-                android:background="#d5d5d5"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/nameP"
-                    android:text="Galaxy S9"
-                    android:textSize="20dp"
-                    android:gravity="center_horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
 
-                <ImageView
-                    android:id="@+id/imgP"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
-                    android:layout_width="125dp"
-                    android:layout_height="125dp" />
-                <TextView
-                    android:id="@+id/precioP"
-                    android:text="Precio: $12000"
-                    android:gravity="center_horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:id="@+id/descP"
-                    android:layout_marginTop="8dp"
-                    android:text="Descripción"
-                    android:gravity="center_horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <LinearLayout
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:text="Cantidad:"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:text="5"
-                        android:layout_marginLeft="3dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-            </LinearLayout>
+            <ListView
+                android:id="@+id/producList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+            </ListView>
+
         </LinearLayout>
-    </ScrollView>
+
 </FrameLayout>
