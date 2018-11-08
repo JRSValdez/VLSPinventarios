@@ -24,7 +24,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import Clases.Producto;
@@ -35,15 +37,15 @@ import Clases.Venta;
 public class Ventas extends Fragment {
 
     ConnectionClass ConexionDB = new ConnectionClass();
-    Connection conn = ConexionDB.CONN();
+  Connection conn = ConexionDB.CONN();
 
     Spinner ProductList;
-    Button btnOK, btnDetalle;
+    Button btnOK, btnEliminar, btnReinicio, btnTerminar;
     EditText etCantidad;
     TextView tvnombre,tvprecio,tvdescrip;
     ArrayList<ProductoModel> productoInfo=new ArrayList<>();
     ArrayList<ProductoModel> lsProdVenta=new ArrayList<>();
-
+    int idEmpresa;
     TableLayout tbProductos;
     public double total=0;
     TextView tvTotal;
@@ -78,6 +80,7 @@ public class Ventas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+       // idEmpresa = getArguments().getInt("idEmpresa");
         return inflater.inflate(R.layout.fragment_ventas, container, false);
     }
 
@@ -91,12 +94,13 @@ public class Ventas extends Fragment {
 
         ProductList=(Spinner)getView().findViewById(R.id.spProductos);
         btnOK=(Button)getView().findViewById(R.id.btnOk);
-        btnDetalle=(Button)getView().findViewById(R.id.btnDetalle);
+        btnEliminar=(Button)getView().findViewById(R.id.btnEliminar);
+        btnReinicio=(Button)getView().findViewById(R.id.btnReiniciar);
         tvnombre=(TextView) getView().findViewById(R.id.tvnameP);
         tvdescrip=(TextView) getView().findViewById(R.id.tvdescP);
         tvprecio=(TextView) getView().findViewById(R.id.tvprecioP);
         etCantidad=(EditText) getView().findViewById(R.id.etCantidad);
-
+        btnTerminar=(Button) getView().findViewById(R.id.btnAggP);
         btnAgg=(Button) getView().findViewById(R.id.btnAggP);
         tbProductos=(TableLayout) getView().findViewById(R.id.tblDetalleVentas);
         tvTotal=(TextView) getView().findViewById(R.id.tvTotal);
@@ -182,24 +186,137 @@ public class Ventas extends Fragment {
     //jajaja
 
 
-        btnDetalle.setOnClickListener(new View.OnClickListener() {
+        btnEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 if (lsProdVenta.size()>0){
+  //  tbProductos.removeAllViews();
+    int cant=Integer.parseInt(etCantidad.getText().toString());
+    int pd=-1;
+    String itemS= ProductList.getSelectedItem().toString();
 
-             Intent intent = new Intent(getActivity(), VentasFin2.class);
-    intent.putParcelableArrayListExtra("productos",  lsProdVenta);
-             getActivity().startActivity(intent);
+    for (int j=0; j<lsProdVenta.size();j++) {
+        if (itemS.equals(lsProdVenta.get(j).producto_name) ) {
+            lsProdVenta.remove(j);
+        }
+    }
 
+    //////////////////////////////////////
+    tbProductos.removeAllViews();
+    for (int x = 0; x < lsProdVenta.size(); x++) {
 
+        TableRow row = new TableRow(getContext());
+        int id = lsProdVenta.get(x).idProducto;
+        String nomb = lsProdVenta.get(x).producto_name;
+        String desc = lsProdVenta.get(x).producto_desc;
+        String price = Double.toString(lsProdVenta.get(x).producto_price);
+        int cantidad= lsProdVenta.get(x).cant;
+        TextView tvid = new TextView(getContext());
+        tvid.setText("" + id);
+        TextView tvNomb = new TextView(getContext());
+        tvNomb.setText("" + nomb);
+        TextView tvPrice = new TextView(getContext());
+        tvPrice.setText(" $" + price);
+        TextView tvCant = new TextView(getContext());
+        tvCant.setText("" + cantidad);
 
+        row.addView(tvid);
+        row.addView(tvNomb);
+        row.addView(tvPrice);
+        row.addView(tvCant);
+        tbProductos.addView(row);
 
-}else{
+        total = total + (lsProdVenta.get(x).producto_price * cantidad);
+    }
+    tvTotal.setText("Total de la venta: $" + total);
+    total=0;
+    Toast.makeText(getContext(), "Item borrado",Toast.LENGTH_SHORT).show();
+    /////////////////////////////////////
 
-    Toast.makeText(getContext(), "No hay items aún",Toast.LENGTH_SHORT).show();
+}else {
+    Toast.makeText(getContext(),"lista vacia", Toast.LENGTH_SHORT).show();
 }
+
+
             }
         });
+
+
+        btnReinicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(lsProdVenta.size()>0){
+                    lsProdVenta.removeAll(lsProdVenta);
+                    tbProductos.removeAllViews();
+
+
+
+
+                    total=0;
+                    tvTotal.setText("Total de la venta: $" + total);
+                    etCantidad.setText("1");
+                    Toast.makeText(getContext(),"venta cancelada", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getContext(),"sin elementos", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+        btnTerminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                double totalV=0;
+                String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+                for (int x = 0; x < lsProdVenta.size(); x++) {
+                   totalV=totalV+lsProdVenta.get(x).cant*lsProdVenta.get(x).producto_price;
+                }
+                int idv=-2;
+                if(lsProdVenta.size()>0){
+                    try{
+                        String query = "Insert into ventas (idEmpresa,venta_date,venta_total) values (1,'"+date+"',"+totalV+")";
+                        PreparedStatement pst=conn.prepareStatement(query);
+                        pst.executeUpdate();
+
+                        double subtotal=0;
+                        idv =ConexionDB.ultimaVenta(1);
+                        for (int x = 0; x < lsProdVenta.size(); x++) {
+                            subtotal=lsProdVenta.get(x).cant*lsProdVenta.get(x).producto_price;
+                            String query2 = "insert into det_venta (idEmpresa,idVenta, idProducto,cantidad, subtotal) values "+
+                            "(1,"+idv+","+lsProdVenta.get(x).idProducto+","+lsProdVenta.get(x).cant+","+subtotal+")";
+                            PreparedStatement pst2=conn.prepareStatement(query2);
+                            pst2.executeUpdate();
+
+                            // disminuyendo Stock
+
+                            String query3="update PRODUCTO set producto_stock=producto_stock-"+lsProdVenta.get(x).cant+" where idProducto="+lsProdVenta.get(x).idProducto;
+                            PreparedStatement pst3=conn.prepareStatement(query3);
+                            pst3.executeUpdate();
+                        }
+                        Toast.makeText(getActivity(), "Éxito", Toast.LENGTH_SHORT).show();
+
+                        //LIMPIAR CONTROLES//////
+
+                        lsProdVenta.removeAll(lsProdVenta);
+                        tbProductos.removeAllViews();
+                        total=0;
+                        tvTotal.setText("Total de la venta: $" + total);
+                        etCantidad.setText("1");
+
+                        ////////////////////////
+
+
+
+                    }catch (SQLException e){
+                        e.printStackTrace();
+                        Toast.makeText(getActivity(), "Error al agregar registro "+idv, Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    Toast.makeText(getContext(),"venta vacía", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
 
 
         ProductList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

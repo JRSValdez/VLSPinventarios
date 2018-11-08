@@ -10,7 +10,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import Clases.ProductoModel;
 import Clases.Usuario;
 
 public class ConnectionClass {
@@ -72,5 +75,22 @@ public class ConnectionClass {
             return _user;
         } else return _user;
     }
+
+    public int ultimaVenta(int idempresa){
+        int lastID=-1;
+        try{
+            String query="select top 1 idVenta from ventas where idempresa ="+idempresa+" order by idVenta desc";
+            Statement st=conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()){
+                lastID=rs.getInt("idVenta");
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return lastID;
+    }
+
+
 
 }
