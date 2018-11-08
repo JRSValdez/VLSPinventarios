@@ -10,6 +10,7 @@ public String producto_name;
 public int producto_stock;
 public double producto_price;
 public String producto_desc;
+public int cant;
 
 public  ProductoModel(){}
 
@@ -39,6 +40,7 @@ public  ProductoModel(){}
         this.producto_stock = parcel.readInt();
         this.producto_price =parcel.readDouble();
         this.producto_desc=parcel.readString();
+        this.cant=parcel.readInt();
     }
     @Override
     public void writeToParcel(Parcel parcel, int flags)
@@ -48,6 +50,7 @@ public  ProductoModel(){}
         parcel.writeInt(this.producto_stock);
         parcel.writeDouble(this.producto_price);
         parcel.writeString(this.producto_desc);
+        parcel.writeInt(this.cant);
     }
 
 
