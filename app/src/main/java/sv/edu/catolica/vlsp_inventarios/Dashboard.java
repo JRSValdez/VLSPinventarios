@@ -12,7 +12,7 @@ import android.widget.Button;
 
 public class Dashboard extends Fragment {
 
-    Button btnAbrirCompras;
+    Button btnAbrirCompras, btnVentas;
     int idEmpresa;
 
     @Override
@@ -33,6 +33,26 @@ public class Dashboard extends Fragment {
             public void onClick(View view) {
 
                 AgregarProductos nextFrag= new AgregarProductos();
+
+                Bundle bundle=new Bundle();
+
+                bundle.putInt("idEmpresa", idEmpresa);
+
+                nextFrag.setArguments(bundle);
+
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.contenedor, nextFrag)
+                        .commit();
+
+            }
+        });
+
+        btnVentas = getView().findViewById(R.id.btnVent);
+        btnVentas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Ventas nextFrag= new Ventas();
 
                 Bundle bundle=new Bundle();
 
