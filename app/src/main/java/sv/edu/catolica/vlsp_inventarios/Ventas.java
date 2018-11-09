@@ -56,7 +56,7 @@ public class Ventas extends Fragment {
     public List<String> Obt_Productos(){
         List<String> values = new ArrayList<>();
         try{
-            String query="SELECT * FROM producto WHERE idEmpresa=1";
+            String query="SELECT * FROM producto WHERE producto_stock>=1 and idEmpresa="+idEmpresa;
             Statement st=conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()){
@@ -80,7 +80,7 @@ public class Ventas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       // idEmpresa = getArguments().getInt("idEmpresa");
+        idEmpresa = getArguments().getInt("idEmpresa");
         return inflater.inflate(R.layout.fragment_ventas, container, false);
     }
 
@@ -109,25 +109,20 @@ public class Ventas extends Fragment {
             @Override
             public void onClick(View view) {
 
-         tbProductos.removeAllViews();
          int suma=0;
          boolean producoExistente=false;
          int pd=-1;
                 String itemS= ProductList.getSelectedItem().toString();
 
          for (int j=0; j<lsProdVenta.size();j++) {
-               if (itemS.equals(productoInfo.get(j).producto_name)) {
+               if (itemS.equals(lsProdVenta.get(j).producto_name)) {
                         producoExistente=true;
-                        suma=productoInfo.get(j).cant+Integer.parseInt(etCantidad.getText().toString());
+                        suma=lsProdVenta.get(j).cant+Integer.parseInt(etCantidad.getText().toString());
                         pd=j;
                     }
                 }
-                if(producoExistente==true && pd>-1){
-                    if(suma<productoInfo.get(pd).producto_stock){
-                        lsProdVenta.get(pd).cant=suma;
-                    }
-         }
-                    if (productoInfo.get(IndSelected).producto_stock > Integer.parseInt(etCantidad.getText().toString()) && etCantidad.getText().length() > 0) {
+
+                    if (productoInfo.get(IndSelected).producto_stock >= Integer.parseInt(etCantidad.getText().toString()) && etCantidad.getText().length() > 0) {
 
                         //Guardando registro seleccionado en la lista de productos a vender
                         if (producoExistente==false){
@@ -135,6 +130,7 @@ public class Ventas extends Fragment {
                         lsProdVenta.add(productoInfo.get(IndSelected));
                         }
                     //jajaja
+                        tbProductos.removeAllViews();
                     for (int x = 0; x < lsProdVenta.size(); x++) {
                         TableRow row = new TableRow(getContext());
                         int id = lsProdVenta.get(x).idProducto;
@@ -142,11 +138,10 @@ public class Ventas extends Fragment {
                         String desc = lsProdVenta.get(x).producto_desc;
                         String price = Double.toString(lsProdVenta.get(x).producto_price);
                         int cant=0;
-                        if(producoExistente==true && lsProdVenta.get(pd).producto_name.equals(lsProdVenta.get(x).producto_name)){
-                        cant=suma;
-                        }else{
+
                         cant = lsProdVenta.get(x).cant;
-                        }
+                        
+
                         TextView tvid = new TextView(getContext());
                         tvid.setText("" + id);
                         TextView tvNomb = new TextView(getContext());
@@ -172,7 +167,6 @@ public class Ventas extends Fragment {
     Toast.makeText(getContext(), "Stock Insuficiente",Toast.LENGTH_SHORT).show();
 }
 
-//aqui va el fucking corchete
             }
         });
 
@@ -236,8 +230,6 @@ if (lsProdVenta.size()>0){
 }else {
     Toast.makeText(getContext(),"lista vacia", Toast.LENGTH_SHORT).show();
 }
-
-
             }
         });
 
@@ -248,9 +240,6 @@ if (lsProdVenta.size()>0){
                 if(lsProdVenta.size()>0){
                     lsProdVenta.removeAll(lsProdVenta);
                     tbProductos.removeAllViews();
-
-
-
 
                     total=0;
                     tvTotal.setText("Total de la venta: $" + total);
@@ -274,7 +263,7 @@ if (lsProdVenta.size()>0){
                 int idv=-2;
                 if(lsProdVenta.size()>0){
                     try{
-                        String query = "Insert into ventas (idEmpresa,venta_date,venta_total) values (1,'"+date+"',"+totalV+")";
+                        String query = "Insert into ventas (idEmpresa,venta_date,venta_total) values ("+idEmpresa+",'"+date+"',"+totalV+")";
                         PreparedStatement pst=conn.prepareStatement(query);
                         pst.executeUpdate();
 
@@ -283,13 +272,14 @@ if (lsProdVenta.size()>0){
                         for (int x = 0; x < lsProdVenta.size(); x++) {
                             subtotal=lsProdVenta.get(x).cant*lsProdVenta.get(x).producto_price;
                             String query2 = "insert into det_venta (idEmpresa,idVenta, idProducto,cantidad, subtotal) values "+
-                            "(1,"+idv+","+lsProdVenta.get(x).idProducto+","+lsProdVenta.get(x).cant+","+subtotal+")";
+                            "("+idEmpresa+","+idv+","+lsProdVenta.get(x).idProducto+","+lsProdVenta.get(x).cant+","+subtotal+")";
                             PreparedStatement pst2=conn.prepareStatement(query2);
                             pst2.executeUpdate();
 
                             // disminuyendo Stock
 
-                            String query3="update PRODUCTO set producto_stock=producto_stock-"+lsProdVenta.get(x).cant+" where idProducto="+lsProdVenta.get(x).idProducto;
+                            String query3="update PRODUCTO set producto_stock=producto_stock-"+lsProdVenta.get(x).cant+
+                                    " where idProducto="+lsProdVenta.get(x).idProducto +" and idEmpresa="+idEmpresa;
                             PreparedStatement pst3=conn.prepareStatement(query3);
                             pst3.executeUpdate();
                         }
@@ -342,8 +332,6 @@ if (lsProdVenta.size()>0){
             }
 
         });
-
-
 
         //------------------------------------------------------------
         ArrayAdapter<String> dataAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item,Obt_Productos());
