@@ -58,9 +58,7 @@ public class AgregarProductos extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         idEmpresa = getArguments().getInt("idEmpresa");
-
         return inflater.inflate(R.layout.fragment_agregarproductos, container, false);
     }
     @Override

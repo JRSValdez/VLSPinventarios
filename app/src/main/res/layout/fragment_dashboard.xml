@@ -5,14 +5,58 @@
     android:layout_height="match_parent"
     tools:context=".Dashboard">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Dashboard"
-        android:layout_gravity="center"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        />
+        android:padding="20dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/btnPr"
+                android:layout_height="match_parent"
+                android:drawableBottom="@drawable/agregarprod"
+                android:text="AGREGAR PRODUCTOS"
+                android:textStyle="bold"
+                android:layout_width="match_parent"/>
+            <Button
+                android:id="@+id/btnLisPr"
+                android:layout_height="match_parent"
+                android:drawableBottom="@drawable/verprod"
+                android:text="VER PRODUCTOS EXISTENTES"
+                android:textStyle="bold"
+                android:layout_width="match_parent"/>
+            <Button
+                android:id="@+id/btnVent"
+                android:layout_height="match_parent"
+                android:drawableBottom="@drawable/ventaico"
+                android:text="VENTAS"
+                android:textStyle="bold"
+                android:layout_width="match_parent"/>
+            <Button
+                android:id="@+id/btnUser"
+                android:layout_height="match_parent"
+                android:drawableBottom="@drawable/user"
+                android:text="USUARIOS"
+                android:textStyle="bold"
+                android:layout_width="match_parent"/>
+            <Button
+                android:id="@+id/btnConf"
+                android:layout_height="match_parent"
+                android:drawableBottom="@drawable/configuracion"
+                android:text="CONFIGURACION"
+                android:textStyle="bold"
+                android:layout_width="match_parent"/>
+            <Button
+                android:id="@+id/btnSalirApp"
+                android:layout_height="match_parent"
+                android:drawableBottom="@drawable/salirapp"
+                android:text="CERRAR APLICACION"
+                android:textStyle="bold"
+                android:layout_width="match_parent"/>
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>
