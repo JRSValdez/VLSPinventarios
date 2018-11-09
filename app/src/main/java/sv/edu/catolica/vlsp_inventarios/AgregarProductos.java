@@ -1,16 +1,21 @@
 package sv.edu.catolica.vlsp_inventarios;
 
 import android.*;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +26,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,17 +39,18 @@ public class AgregarProductos extends Fragment {
 
     EditText NombreP, DescripP, CantP, CostoP, PrecioVentaP,FechaVencP;
     Spinner ListaCategorias;
-    Button Add, BtnImg;
-    String Nombre, Descrip, FechaV;
-    float Stock;
-    Double Costo, PrecioV;
+    Button Add;
+    String Nombre, Descrip, FechaV, Stock, Costo, PrecioV;
+    ImageView imgCat;
 
     int idEmpresa;
 
     public List<String> ListS(){
+        idEmpresa = getArguments().getInt("idEmpresa");
         List<String> values = new ArrayList<>();
+        values.add("Seleccione");
         try{
-            String query="SELECT * FROM CATEGORIA WHERE idEmpresa=1";
+            String query="SELECT * FROM CATEGORIA WHERE idEmpresa="+idEmpresa;
             Statement st=cn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()){
@@ -77,31 +84,91 @@ public class AgregarProductos extends Fragment {
         PrecioVentaP=(EditText)getView().findViewById(R.id.txtPprecio);
         FechaVencP=(EditText)getView().findViewById(R.id.txtPvence);
         ListaCategorias=(Spinner)getView().findViewById(R.id.spnCat);
-        BtnImg=(Button)getView().findViewById(R.id.imgProd);
         Add=(Button)getView().findViewById(R.id.btnAggP);
+        imgCat=(ImageView)getView().findViewById(R.id.imgShow);
+        idEmpresa=(int)getArguments().getInt("idEmpresa");
+
+        CantP.setFilters(new InputFilter[]{new InputFilter() {
+            DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
+            @Override
+            public CharSequence filter(CharSequence charSequence, int i, int i1, Spanned spanned, int i2, int i3) {
+                int indexPoint = spanned.toString().indexOf(decimalFormatSymbols.getDecimalSeparator());
+                if (indexPoint == -1)
+                    return charSequence;
+                int decimals = i3 - (indexPoint+1);
+                return decimals < 2 ? charSequence : "";
+            }
+        }});
+        CostoP.setFilters(new InputFilter[]{new InputFilter() {
+            DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
+            @Override
+            public CharSequence filter(CharSequence charSequence, int i, int i1, Spanned spanned, int i2, int i3) {
+                int indexPoint = spanned.toString().indexOf(decimalFormatSymbols.getDecimalSeparator());
+                if (indexPoint == -1)
+                    return charSequence;
+                int decimals = i3 - (indexPoint+1);
+                return decimals < 2 ? charSequence : "";
+            }
+        }});
+        PrecioVentaP.setFilters(new InputFilter[]{new InputFilter() {
+            DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
+            @Override
+            public CharSequence filter(CharSequence charSequence, int i, int i1, Spanned spanned, int i2, int i3) {
+                int indexPoint = spanned.toString().indexOf(decimalFormatSymbols.getDecimalSeparator());
+                if (indexPoint == -1)
+                    return charSequence;
+                int decimals = i3 - (indexPoint+1);
+                return decimals < 2 ? charSequence : "";
+            }
+        }});
         //------------------------------------------------------------
         Add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String itemText = (String) ListaCategorias.getSelectedItem();
-                String[] s =  itemText.split("-");
-                String idCat = s[0].trim();
                 Nombre=NombreP.getText().toString();
                 Descrip=DescripP.getText().toString();
                 FechaV=FechaVencP.getText().toString();
-                Stock=Float.parseFloat(CantP.getText().toString());
-                Costo=Double.parseDouble(CostoP.getText().toString());
-                PrecioV=Double.parseDouble(PrecioVentaP.getText().toString());
-                try{
-                    String query = "INSERT INTO PRODUCTO (idEmpresa,idCat,producto_name,producto_stock,producto_price,producto_cost,producto_desc,producto_exp_date) VALUES " +
-                            "("+idEmpresa+","+idCat+",'"+Nombre+"',"+Stock+","+PrecioV+","+Costo+",'"+Descrip+"','"+FechaV+"')";
-                    PreparedStatement pst=cn.prepareStatement(query);
-                    pst.executeUpdate();
-                    Toast.makeText(getActivity(), "Registro agregado con éxito", Toast.LENGTH_SHORT).show();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                    Toast.makeText(getActivity(), "Error al agregar registro", Toast.LENGTH_SHORT).show();
+                Stock=CantP.getText().toString();
+                Costo=CostoP.getText().toString();
+                PrecioV=PrecioVentaP.getText().toString();
+                if(Nombre.isEmpty() || Descrip.isEmpty() || FechaV.isEmpty() || Stock.isEmpty() || Costo.isEmpty() || PrecioV.isEmpty()){
+                    Toast.makeText(getActivity(), "Campos vacíos", Toast.LENGTH_SHORT).show();
+                }else if(ListaCategorias.getSelectedItemPosition()==0){
+                    Toast.makeText(getActivity(), "Seleccione una categoría", Toast.LENGTH_SHORT).show();
+                }else{
+                    String itemText = (String) ListaCategorias.getSelectedItem();
+                    String[] s =  itemText.split("-");
+                    String idCat = s[0].trim();
+                    try{
+                        int Default=0;
+                        String query = "INSERT INTO PRODUCTO (idEmpresa,idCat,producto_name,producto_stock,producto_price,producto_cost,producto_desc,producto_exp_date,eliminado) VALUES " +
+                                "("+idEmpresa+","+idCat+",'"+Nombre+"',"+Stock+","+PrecioV+","+Costo+",'"+Descrip+"','"+FechaV+"',"+Default+")";
+                        PreparedStatement pst=cn.prepareStatement(query);
+                        pst.executeUpdate();
+                        Toast.makeText(getActivity(), "Registro agregado con éxito", Toast.LENGTH_SHORT).show();
+                    }catch (SQLException e){
+                        e.printStackTrace();
+                        Toast.makeText(getActivity(), "Error al agregar registro "+e, Toast.LENGTH_LONG).show();
+                    }finally {
+
+                    }
                 }
+            }
+        });
+        ListaCategorias.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                int resID = getResources().getIdentifier("r"+String.valueOf(i),"drawable",getActivity().getPackageName());
+                if(i==0){
+                    imgCat.setImageResource(R.drawable.producto);
+                }else{
+                    imgCat.setImageResource(resID);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
         //------------------------------------------------------------
