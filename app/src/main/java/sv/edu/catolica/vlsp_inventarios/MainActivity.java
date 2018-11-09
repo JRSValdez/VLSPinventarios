@@ -112,10 +112,10 @@ public Toolbar toolbar;
             fm.beginTransaction().replace(R.id.contenedor,fragobj).commit();
         } else if (id == R.id.nav_configuracion) {
             fm.beginTransaction().replace(R.id.contenedor,new Configuracion()).commit();
-        }else if (id == R.id.nav_compras) {
-            AgregarProductos fragobj=new AgregarProductos();
+        }else if (id == R.id.nav_ver_ventas) {
+            ListarVentas fragobj=new ListarVentas();
             fragobj.setArguments(bundle);
-            fm.beginTransaction().replace(R.id.contenedor,fragobj).commit();
+            fm.beginTransaction().replace(R.id.contenedor, fragobj).commit();
         } else if (id == R.id.nav_ventas) {
             Ventas fragobj=new Ventas();
             fragobj.setArguments(bundle);

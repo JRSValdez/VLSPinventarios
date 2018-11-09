@@ -9,21 +9,21 @@
             android:icon="@drawable/ic_color_lens_black_24dp"
             android:title="Dashboard" />
         <item
+            android:id="@+id/nav_agregar_productos"
+            android:icon="@drawable/ic_create_black_24dp"
+            android:title="Agregar producto" />
+        <item
             android:id="@+id/nav_ver_productos"
             android:icon="@drawable/ic_description_black_24dp"
             android:title="Ver productos" />
         <item
-            android:id="@+id/nav_agregar_productos"
-            android:icon="@drawable/ic_create_black_24dp"
-            android:title="Agregar productos" />
-        <item
             android:id="@+id/nav_ventas"
             android:icon="@drawable/ic_attach_money_black_24dp"
-            android:title="Ventas" />
+            android:title="Realizar venta" />
         <item
-            android:id="@+id/nav_compras"
+            android:id="@+id/nav_ver_ventas"
             android:icon="@drawable/ic_attach_money_black_24dp"
-            android:title="Compras" />
+            android:title="Ver mis ventas" />
     </group>
 
     <item android:title="otros">
