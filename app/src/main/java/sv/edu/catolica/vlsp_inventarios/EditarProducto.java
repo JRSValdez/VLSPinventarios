@@ -1,16 +1,23 @@
 package sv.edu.catolica.vlsp_inventarios;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -19,6 +26,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,17 +39,18 @@ public class EditarProducto extends Fragment {
 
     EditText NombreP, DescripP, CantP, CostoP, PrecioVentaP,FechaVencP;
     Spinner ListaCategorias;
-    Button Add, BtnImg;
-    String Nombre, Descrip, FechaV;
-    float Stock;
-    Double Costo, PrecioV;
+    Button Edit, BtnDelete;
+    String Nombre, Descrip, FechaV, Stock, Costo, PrecioV, Categ;
+    ImageView imgCat;
 
     int idEmpresa, idPro;
 
     public List<String> ListS(){
+        idEmpresa = getArguments().getInt("idEmpresa");
         List<String> values = new ArrayList<>();
+        values.add("Seleccione");
         try{
-            String query="SELECT * FROM CATEGORIA WHERE idEmpresa=1";
+            String query="SELECT * FROM CATEGORIA WHERE idEmpresa="+idEmpresa;
             Statement st=cn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()){
@@ -77,77 +86,173 @@ public class EditarProducto extends Fragment {
         PrecioVentaP=(EditText)getView().findViewById(R.id.txtPprecio);
         FechaVencP=(EditText)getView().findViewById(R.id.txtPvence);
         ListaCategorias=(Spinner)getView().findViewById(R.id.spnCat);
-        BtnImg=(Button)getView().findViewById(R.id.imgProd);
-        Add=(Button)getView().findViewById(R.id.btnAggP);
-        //------------------------------------------------------------
+        BtnDelete=(Button)getView().findViewById(R.id.btnDelete);
+        imgCat=(ImageView)getView().findViewById(R.id.imgShow);
+        Edit=(Button)getView().findViewById(R.id.btnAggP);
 
-        this.llenarDartos(idPro);
+        CantP.setFilters(new InputFilter[]{new InputFilter() {
+            DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
+            @Override
+            public CharSequence filter(CharSequence charSequence, int i, int i1, Spanned spanned, int i2, int i3) {
+                int indexPoint = spanned.toString().indexOf(decimalFormatSymbols.getDecimalSeparator());
+                if (indexPoint == -1)
+                    return charSequence;
+                int decimals = i3 - (indexPoint+1);
+                return decimals < 2 ? charSequence : "";
+            }
+        }});
+        CostoP.setFilters(new InputFilter[]{new InputFilter() {
+            DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
+            @Override
+            public CharSequence filter(CharSequence charSequence, int i, int i1, Spanned spanned, int i2, int i3) {
+                int indexPoint = spanned.toString().indexOf(decimalFormatSymbols.getDecimalSeparator());
+                if (indexPoint == -1)
+                    return charSequence;
+                int decimals = i3 - (indexPoint+1);
+                return decimals < 2 ? charSequence : "";
+            }
+        }});
+        PrecioVentaP.setFilters(new InputFilter[]{new InputFilter() {
+            DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
+            @Override
+            public CharSequence filter(CharSequence charSequence, int i, int i1, Spanned spanned, int i2, int i3) {
+                int indexPoint = spanned.toString().indexOf(decimalFormatSymbols.getDecimalSeparator());
+                if (indexPoint == -1)
+                    return charSequence;
+                int decimals = i3 - (indexPoint+1);
+                return decimals < 2 ? charSequence : "";
+            }
+        }});
+        //-----------------------ELIMINAR REGISTRO-------------------------------------
 
-        Add.setOnClickListener(new View.OnClickListener() {
+        BtnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String itemText = (String) ListaCategorias.getSelectedItem();
-                String[] s =  itemText.split("-");
-                String idCat = s[0].trim();
+                AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
+                b.setCancelable(false);
+                b.setTitle("Confirmación");
+                b.setMessage("¿Realmente desea eliminar este producto?");
+                b.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        try{
+                            String query = "UPDATE PRODUCTO SET eliminado=1 WHERE idProducto="+idPro;
+                            PreparedStatement pst=cn.prepareStatement(query);
+                            pst.executeUpdate();
+                            Toast.makeText(getActivity(), "Registro eliminado con éxito", Toast.LENGTH_SHORT).show();
+
+                            ListarProductos nextFrag= new ListarProductos();
+
+                            Bundle bundle=new Bundle();
+                            nextFrag.setArguments(bundle);
+
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contenedor, nextFrag).commit();
+                        }catch (SQLException e){
+                            e.printStackTrace();
+                            Toast.makeText(getActivity(), "Error al eliminar registro", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                b.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                b.create();
+                b.show();
+            }
+        });
+
+        //--------------------------------------------------
+
+        Edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Nombre=NombreP.getText().toString();
                 Descrip=DescripP.getText().toString();
                 FechaV=FechaVencP.getText().toString();
-                Stock=Float.parseFloat(CantP.getText().toString());
-                Costo=Double.parseDouble(CostoP.getText().toString());
-                PrecioV=Double.parseDouble(PrecioVentaP.getText().toString());
-                try{
-                    //cambiar consulta insert a consulta update
-                    String query = "INSERT INTO PRODUCTO (idEmpresa,idCat,producto_name,producto_stock,producto_price,producto_cost,producto_desc,producto_exp_date) VALUES " +
-                            "("+idEmpresa+",'"+idCat+",'"+Nombre+"',"+Stock+","+PrecioV+","+Costo+",'"+Descrip+"','"+FechaV+"')";
-                    PreparedStatement pst=cn.prepareStatement(query);
-                    pst.executeUpdate();
-                    Toast.makeText(getActivity(), "Registro agregado con éxito", Toast.LENGTH_SHORT).show();
-                }catch (SQLException e){
-                    e.printStackTrace();
-                    Toast.makeText(getActivity(), "Error al agregar registro", Toast.LENGTH_SHORT).show();
+                Stock=CantP.getText().toString();
+                Costo=CostoP.getText().toString();
+                PrecioV=PrecioVentaP.getText().toString();
+                if(Nombre.isEmpty() || Descrip.isEmpty() || FechaV.isEmpty() || Stock.isEmpty() || Costo.isEmpty() || PrecioV.isEmpty()){
+                    Toast.makeText(getActivity(), "Campos vacíos", Toast.LENGTH_SHORT).show();
+                }else if(ListaCategorias.getSelectedItemPosition()==0){
+                    Toast.makeText(getActivity(), "Seleccione una categoría", Toast.LENGTH_SHORT).show();
+                }else{
+                    String itemText = (String) ListaCategorias.getSelectedItem();
+                    String[] s =  itemText.split("-");
+                    String idCat = s[0].trim();
+                    try{
+                        String query = "UPDATE PRODUCTO SET idCat="+idCat+",producto_name='"+Nombre+"',producto_stock="+Stock+",producto_price="+PrecioV+",producto_cost="+Costo+",producto_desc='"+Descrip+"',producto_exp_date='"+FechaV+"' WHERE idProducto="+idPro;
+                        PreparedStatement pst=cn.prepareStatement(query);
+                        pst.executeUpdate();
+                        Toast.makeText(getActivity(), "Registro actualizado con éxito", Toast.LENGTH_SHORT).show();
+                    }catch (SQLException e){
+                        e.printStackTrace();
+                        Toast.makeText(getActivity(), "Error al actualizar registro", Toast.LENGTH_SHORT).show();
+                    }
                 }
+            }
+        });
+        ListaCategorias.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                int resID = getResources().getIdentifier("r"+String.valueOf(i),"drawable",getActivity().getPackageName());
+                if(i==0){
+                    imgCat.setImageResource(R.drawable.producto);
+                }else{
+                    imgCat.setImageResource(resID);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
         //------------------------------------------------------------
         ArrayAdapter<String> dataAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item,ListS());
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ListaCategorias.setAdapter(dataAdapter);
-    }
+        //-------llenar datos de acuerdo a la bd----------
+        try{
+            ConnectionClass connectionClass = new ConnectionClass();
+            Connection conn = connectionClass.CONN();
+            Statement st = conn.createStatement();
 
-    public void llenarDartos(int _idPro){
-        try
-        {
-            Statement st = cn.createStatement();
-
-            String query = "select * from producto p where p.idProducto = ?";
-
-            PreparedStatement preparedStatement = cn.prepareStatement(query);
-            preparedStatement.setInt(1, _idPro);
-            ResultSet rs = preparedStatement.executeQuery();
-
-            Producto obj = new Producto();
-
-            while (rs.next()) {
-                obj.idProducto = (rs.getInt(2));
-                obj.producto = (rs.getString(4));
-                obj.cantidad = (rs.getFloat(5));
-                obj.precio = (rs.getFloat(6));
-                obj.costo = (rs.getFloat(7));
-                obj.descripcion = (rs.getString(8));
-                obj.Vencimiento = (rs.getString(9));
+            idEmpresa = (int)getArguments().getInt("idEmpresa");
+            ResultSet rs = st.executeQuery( "select p.producto_name,CONCAT(c.idCat, ' - ', c.cat_name),p.producto_stock,p.producto_cost,p.producto_price,p.producto_desc,p.producto_exp_date from producto p inner join categoria c on c.idCat = p.idCat where p.idEmpresa="+idEmpresa+" and p.idProducto="+idPro);
+            while ( rs.next() ){
+                Nombre=rs.getString(1);
+                Categ=rs.getString(2);
+                Stock=rs.getString(3);
+                Costo=rs.getString(4);
+                PrecioV=rs.getString(5);
+                Descrip=rs.getString(6);
+                FechaV=rs.getString(7);
             }
-
-            NombreP.setText(obj.producto);
-            DescripP.setText(obj.descripcion);
-            CantP.setText(String.valueOf(obj.cantidad));
-            CostoP.setText(String.valueOf(obj.costo));
-            PrecioVentaP.setText(String.valueOf(obj.precio));
-            FechaVencP.setText(String.valueOf(obj.Vencimiento));
         }
-        catch ( Exception e )
-        {
+        catch ( Exception e ){
             e.printStackTrace();
         }
+        NombreP.setText(Nombre);
+        DescripP.setText(Descrip);
+        CantP.setText(Stock);
+        CostoP.setText(Costo);
+        PrecioVentaP.setText(PrecioV);
+        FechaVencP.setText(FechaV);
+        ListaCategorias.setSelection(obtenerPosicionItem(ListaCategorias, Categ));
+    }
+
+    public static int obtenerPosicionItem(Spinner spinner, String fruta) {
+        int posicion = 0;
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(fruta)) {
+                posicion = i;
+            }
+        }
+        return posicion;
     }
 
 }

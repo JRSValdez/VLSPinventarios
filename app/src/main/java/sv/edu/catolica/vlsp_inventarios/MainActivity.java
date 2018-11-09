@@ -112,6 +112,10 @@ public Toolbar toolbar;
             fm.beginTransaction().replace(R.id.contenedor,fragobj).commit();
         } else if (id == R.id.nav_configuracion) {
             fm.beginTransaction().replace(R.id.contenedor,new Configuracion()).commit();
+        }else if (id == R.id.nav_compras) {
+            AgregarProductos fragobj=new AgregarProductos();
+            fragobj.setArguments(bundle);
+            fm.beginTransaction().replace(R.id.contenedor,fragobj).commit();
         } else if (id == R.id.nav_ventas) {
             Ventas fragobj=new Ventas();
             fragobj.setArguments(bundle);
