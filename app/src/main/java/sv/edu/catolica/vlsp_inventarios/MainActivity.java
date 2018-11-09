@@ -116,6 +116,10 @@ public Toolbar toolbar;
             ListarVentas fragobj=new ListarVentas();
             fragobj.setArguments(bundle);
             fm.beginTransaction().replace(R.id.contenedor, fragobj).commit();
+        }else if (id == R.id.nav_compras) {
+            Compras fragobj=new Compras();
+            fragobj.setArguments(bundle);
+            fm.beginTransaction().replace(R.id.contenedor, fragobj).commit();
         } else if (id == R.id.nav_ventas) {
             Ventas fragobj=new Ventas();
             fragobj.setArguments(bundle);

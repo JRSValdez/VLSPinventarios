@@ -24,6 +24,10 @@
             android:id="@+id/nav_ver_ventas"
             android:icon="@drawable/ic_attach_money_black_24dp"
             android:title="Ver mis ventas" />
+        <item
+            android:id="@+id/nav_compras"
+            android:icon="@drawable/ic_attach_money_black_24dp"
+            android:title="Realizar compra" />
     </group>
 
     <item android:title="otros">
