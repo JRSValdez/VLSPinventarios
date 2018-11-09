@@ -27,7 +27,7 @@ public class ListarVentas extends Fragment {
     int idEmpresa;
     ListView listView;
     public int[] idVentas;
-
+    public double[]  totales;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,12 +67,14 @@ public class ListarVentas extends Fragment {
             if(numRows > 0) {
                 int con = 0;
                 this.idVentas = new int[numRows];
+                this.totales = new double[numRows];
                 while (rs.next()) {
                     Venta obj = new Venta();
                     obj.idVenta = (rs.getInt(1));
                     this.idVentas[con] = obj.idVenta;
                     obj.fecha = (rs.getString(2));
                     obj.total = (rs.getDouble(3));
+                    this.totales[con] = obj.total;
                     arrayList.add(obj);
                     con++;
                 }
@@ -92,13 +94,14 @@ public class ListarVentas extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 int idVenta = idVentas[i];
+                double total = totales[i];
 
-                ListarVentas nextFrag= new ListarVentas();
+                DetalleVenta nextFrag= new DetalleVenta();
 
                 Bundle bundle=new Bundle();
 
                 bundle.putInt("idVenta", idVenta);
-                bundle.putInt("idEmpresa", idEmpresa);
+                bundle.putDouble("total", total);
 
                 nextFrag.setArguments(bundle);
 

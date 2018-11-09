@@ -30,7 +30,6 @@ import Clases.ProductListAdapter;
 public class ListarProductos extends Fragment {
 
     int idEmpresa;
-    ListView listView;
     public int[] idPros;
 
     @Override
