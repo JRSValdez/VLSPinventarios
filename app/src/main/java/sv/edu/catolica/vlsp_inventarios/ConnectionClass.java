@@ -91,6 +91,19 @@ public class ConnectionClass {
         return lastID;
     }
 
-
+    public int ultimaCompra(int idempresa){
+        int lastID=-1;
+        try{
+            String query="select top 1 idCompra from compras where idempresa ="+idempresa+" order by idCompra desc";
+            Statement st=conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()){
+                lastID=rs.getInt("idCompra");
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return lastID;
+    }
 
 }
