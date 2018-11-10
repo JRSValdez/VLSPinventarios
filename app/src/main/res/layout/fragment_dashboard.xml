@@ -10,53 +10,135 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp">
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
+
             android:layout_height="match_parent">
-            <Button
-                android:id="@+id/btnPr"
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableBottom="@drawable/agregarprod"
-                android:text="AGREGAR PRODUCTOS"
-                android:textStyle="bold"
-                android:layout_width="match_parent"/>
-            <Button
-                android:id="@+id/btnLisPr"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnPr"
+                    android:layout_width="135dp"
+                    android:layout_height="163dp"
+                    android:drawableBottom="@drawable/agregarprod"
+                    android:textSize="10dp"
+
+                    android:text="AGREGAR PRODUCTOS"
+                    android:textStyle="bold" />
+
+
+                <Button
+                    android:id="@+id/btnListarProd"
+                    android:layout_width="135dp"
+                    android:layout_height="163dp"
+                    android:drawableBottom="@drawable/verprod"
+                    android:textSize="10dp"
+                    android:text="VER PRODUCTOS"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableBottom="@drawable/verprod"
-                android:text="VER PRODUCTOS EXISTENTES"
-                android:textStyle="bold"
-                android:layout_width="match_parent"/>
-            <Button
-                android:id="@+id/btnVent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnVenta"
+                    android:layout_width="135dp"
+                    android:layout_height="163dp"
+                    android:drawableBottom="@drawable/ventasicono"
+                    android:textSize="10dp"
+                    android:text="VENTAS"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnHistorialVentas"
+                    android:layout_width="135dp"
+                    android:layout_height="163dp"
+                    android:drawableBottom="@drawable/hventas"
+                    android:textSize="10dp"
+                    android:text="HISTORIAL VENTAS"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableBottom="@drawable/ventaico"
-                android:text="VENTAS"
-                android:textStyle="bold"
-                android:layout_width="match_parent"/>
-            <Button
-                android:id="@+id/btnUser"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+
+                <Button
+                    android:id="@+id/btnCompra"
+                    android:layout_width="135dp"
+                    android:layout_height="163dp"
+                    android:drawableBottom="@drawable/comprasicono"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:text="Compras"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnAggUser"
+                    android:layout_width="135dp"
+                    android:layout_height="163dp"
+                    android:drawableBottom="@drawable/user"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:text="AGREGAR USUARIO"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableBottom="@drawable/user"
-                android:text="USUARIOS"
-                android:textStyle="bold"
-                android:layout_width="match_parent"/>
-            <Button
-                android:id="@+id/btnConf"
-                android:layout_height="match_parent"
-                android:drawableBottom="@drawable/configuracion"
-                android:text="CONFIGURACION"
-                android:textStyle="bold"
-                android:layout_width="match_parent"/>
-            <Button
-                android:id="@+id/btnSalirApp"
-                android:layout_height="match_parent"
-                android:drawableBottom="@drawable/salirapp"
-                android:text="CERRAR APLICACION"
-                android:textStyle="bold"
-                android:layout_width="match_parent"/>
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+
+                <Button
+                    android:id="@+id/btnConfiguracion"
+                    android:layout_width="135dp"
+                    android:layout_height="163dp"
+                    android:drawableBottom="@drawable/configuracionico"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:text="Configuracion"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnSalirApp"
+                    android:layout_width="135dp"
+                    android:layout_height="163dp"
+                    android:drawableBottom="@drawable/salirapp"
+                    android:gravity="center"
+                    android:textSize="10dp"
+                    android:text="SALIR"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
         </LinearLayout>
+
+
     </ScrollView>
+
 
 </FrameLayout>

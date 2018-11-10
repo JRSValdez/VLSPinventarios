@@ -12,7 +12,7 @@ import android.widget.Button;
 
 public class Dashboard extends Fragment {
 
-    Button btnAbrirCompras, btnVentas;
+    Button btnPr, btnVentas, btnListarProd, btnListarVenta, btnListarHistorialVen, btnComp, btnAggUser, btnConfig, btnSalir;
     int idEmpresa;
 
     @Override
@@ -27,8 +27,8 @@ public class Dashboard extends Fragment {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        btnAbrirCompras = getView().findViewById(R.id.btnPr);
-        btnAbrirCompras.setOnClickListener(new View.OnClickListener() {
+        btnPr = getView().findViewById(R.id.btnPr);
+        btnPr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -47,8 +47,29 @@ public class Dashboard extends Fragment {
             }
         });
 
-        btnVentas = getView().findViewById(R.id.btnVent);
-        btnVentas.setOnClickListener(new View.OnClickListener() {
+        btnListarProd = getView().findViewById(R.id.btnListarProd);
+        btnListarProd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                ListarProductos nextFrag= new ListarProductos();
+
+                Bundle bundle=new Bundle();
+
+                bundle.putInt("idEmpresa", idEmpresa);
+
+                nextFrag.setArguments(bundle);
+
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.contenedor, nextFrag)
+                        .commit();
+
+            }
+        });
+
+        
+        btnListarVenta = getView().findViewById(R.id.btnVenta);
+        btnListarVenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -66,5 +87,92 @@ public class Dashboard extends Fragment {
 
             }
         });
+
+        btnListarHistorialVen = getView().findViewById(R.id.btnHistorialVentas);
+        btnListarHistorialVen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                ListarVentas nextFrag= new ListarVentas();
+
+                Bundle bundle=new Bundle();
+
+                bundle.putInt("idEmpresa", idEmpresa);
+
+                nextFrag.setArguments(bundle);
+
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.contenedor, nextFrag)
+                        .commit();
+
+            }
+        });
+
+
+        btnComp = getView().findViewById(R.id.btnCompra);
+        btnComp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Compras nextFrag= new Compras();
+
+                Bundle bundle=new Bundle();
+
+                bundle.putInt("idEmpresa", idEmpresa);
+
+                nextFrag.setArguments(bundle);
+
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.contenedor, nextFrag)
+                        .commit();
+
+            }
+        });
+
+
+        //btnAggUser = getView().findViewById(R.id.btnAggUser);
+        //btnAggUser.setOnClickListener(new View.OnClickListener() {
+           // @Override
+            //public void onClick(View view) {
+
+               // NewUser nextFrag= new NewUser();
+
+                //Bundle bundle=new Bundle();
+
+                //bundle.putInt("idEmpresa", idEmpresa);
+
+                //nextFrag.setArguments(bundle);
+
+                //getActivity().getSupportFragmentManager().beginTransaction()
+                        //.replace(R.id.contenedor, nextFrag)
+                        //.commit();
+
+            //}
+        //});
+
+       // btnConfig = getView().findViewById(R.id.btnConfiguracion);
+        //btnConfig.setOnClickListener(new View.OnClickListener() {
+           // @Override
+            //public void onClick(View view) {
+
+               // RegistrarEmpresa nextFrag= new RegistrarEmpresa();
+
+               // Bundle bundle=new Bundle();
+
+                //bundle.putInt("idEmpresa", idEmpresa);
+
+                //nextFrag.setArguments(bundle);
+
+                //getActivity().getSupportFragmentManager().beginTransaction()
+                        //.replace(R.id.contenedor, nextFrag)
+                        //.commit();
+
+            //}
+        //});
+
+
+
+
+
     }
 }
