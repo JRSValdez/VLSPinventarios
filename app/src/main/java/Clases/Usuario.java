@@ -14,6 +14,7 @@ public class Usuario implements Serializable {
     public String email;
     public String pass;
     public String pass2;
+    public int type;
 
     public Usuario(){
 
