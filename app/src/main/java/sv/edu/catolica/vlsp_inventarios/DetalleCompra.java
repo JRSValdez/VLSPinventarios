@@ -19,23 +19,23 @@ import java.util.ArrayList;
 
 import Clases.DetalleVentasListAdapter;
 
-public class DetalleVenta extends Fragment {
+public class DetalleCompra extends Fragment {
     ConnectionClass con = new ConnectionClass();
     Connection cn = con.CONN();
-    int idVenta;
+    int idCompra;
     double total;
 
-    TextView txtTotal, txtIdVenta;
+    TextView txtTotal, txtIdcompra;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        idVenta = getArguments().getInt("idVenta");
+        idCompra = getArguments().getInt("idCompra");
         total = getArguments().getDouble("total");
-        Log.e("idpro",".-.-.-.-.-.-.-.--.---.-.----.--.-.-."+String.valueOf(idVenta));
-        return inflater.inflate(R.layout.fragment_detalleventa, container, false);
+        Log.e("idpro",".-.-.-.-.-.-.-.--.---.-.----.--.-.-."+String.valueOf(idCompra));
+        return inflater.inflate(R.layout.fragment_detallecompra, container, false);
     }
 
     @Override
@@ -54,12 +54,12 @@ public class DetalleVenta extends Fragment {
 
             Statement st = conn.createStatement();
 
-            String query = "SELECT P.producto_name, D.cantidad, D.subtotal FROM DET_VENTA D " +
+            String query = "SELECT P.producto_name, D.cantidad, D.subtotal FROM DET_COMPRA D " +
                     " INNER JOIN PRODUCTO P ON P.idProducto = D.idProducto " +
-                    "WHERE D.idVenta = ?";
+                    "WHERE D.idCompra = ?";
 
             PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-            preparedStatement.setInt(1, idVenta);
+            preparedStatement.setInt(1, idCompra);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -81,10 +81,8 @@ public class DetalleVenta extends Fragment {
 
         txtTotal = getView().findViewById(R.id.txtTotal);
         txtTotal.setText(String.valueOf(total));
-
-        txtIdVenta = getView().findViewById(R.id.idVenta);
-        txtIdVenta.setText("ID venta: "+String.valueOf(idVenta));
-
+        txtIdcompra = getView().findViewById(R.id.idCompra);
+        txtIdcompra.setText("ID compra: "+ String.valueOf(idCompra));
     }
 
 }

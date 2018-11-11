@@ -135,6 +135,12 @@ public Toolbar toolbar;
             fragobj.setArguments(bundle);
             fm.beginTransaction().replace(R.id.contenedor,fragobj).addToBackStack(null).commit();
 
+        }
+        else if (id == R.id.nav_ver_compras) {
+            ListarCompras fragobj=new ListarCompras();
+            fragobj.setArguments(bundle);
+            fm.beginTransaction().replace(R.id.contenedor,fragobj).addToBackStack(null).commit();
+
         } else if (id == R.id.nav_salir) {
             finish();
         }
