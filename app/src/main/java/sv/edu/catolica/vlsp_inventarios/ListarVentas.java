@@ -106,7 +106,7 @@ public class ListarVentas extends Fragment {
                 nextFrag.setArguments(bundle);
 
                 getActivity().getSupportFragmentManager().beginTransaction()
-                      .replace(R.id.contenedor, nextFrag)
+                      .replace(R.id.contenedor, nextFrag).addToBackStack(null)
                     .commit();
 
             }

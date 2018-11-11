@@ -1,25 +1,17 @@
 package sv.edu.catolica.vlsp_inventarios;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
-import Clases.ClassListProductsItems;
 import Clases.Usuario;
 
 public class MainActivity extends AppCompatActivity
@@ -101,35 +93,49 @@ public Toolbar toolbar;
         Bundle bundle=new Bundle();
         bundle.putInt("idEmpresa", user.idEmpresa);
         int id = item.getItemId();
-        fm.beginTransaction().replace(R.id.contenedor,new Configuracion()).commit();
+        Dashboard dash=new Dashboard();
+        dash.setArguments(bundle);
+        fm.beginTransaction().replace(R.id.contenedor, dash).addToBackStack(null).commit();
+
         if (id == R.id.nav_ver_productos) {
             ListarProductos fragobj=new ListarProductos();
             fragobj.setArguments(bundle);
-            fm.beginTransaction().replace(R.id.contenedor, fragobj).commit();
+            fm.beginTransaction().replace(R.id.contenedor, fragobj).addToBackStack(null).commit();
+
         } else if (id == R.id.nav_agregar_productos) {
             AgregarProductos fragobj=new AgregarProductos();
             fragobj.setArguments(bundle);
-            fm.beginTransaction().replace(R.id.contenedor,fragobj).commit();
+            fm.beginTransaction().replace(R.id.contenedor,fragobj).addToBackStack(null).commit();
+
         } else if (id == R.id.nav_configuracion) {
-            fm.beginTransaction().replace(R.id.contenedor,new Configuracion()).commit();
+            fm.beginTransaction().replace(R.id.contenedor,new Configuracion()).addToBackStack(null).commit();
+
         }else if (id == R.id.nav_ver_ventas) {
             ListarVentas fragobj=new ListarVentas();
             fragobj.setArguments(bundle);
-            fm.beginTransaction().replace(R.id.contenedor, fragobj).commit();
+            fm.beginTransaction().replace(R.id.contenedor, fragobj).addToBackStack(null).commit();
+
         }else if (id == R.id.nav_compras) {
             Compras fragobj=new Compras();
             fragobj.setArguments(bundle);
-            fm.beginTransaction().replace(R.id.contenedor, fragobj).commit();
+            fm.beginTransaction().replace(R.id.contenedor, fragobj).addToBackStack(null).commit();
+
         } else if (id == R.id.nav_ventas) {
             Ventas fragobj=new Ventas();
             fragobj.setArguments(bundle);
-            fm.beginTransaction().replace(R.id.contenedor,fragobj).commit();
-        } else if (id == R.id.nav_usuarios) {
-            fm.beginTransaction().replace(R.id.contenedor,new Usuarios()).commit();
-        } else if (id == R.id.nav_dashboard) {
-            fm.beginTransaction().replace(R.id.contenedor,new Dashboard()).commit();
-        } else if (id == R.id.nav_salir) {
+            fm.beginTransaction().replace(R.id.contenedor,fragobj).addToBackStack(null).commit();
 
+        } else if (id == R.id.nav_usuarios) {
+            Usuarios fragobj=new Usuarios();
+            fragobj.setArguments(bundle);
+            fm.beginTransaction().replace(R.id.contenedor, fragobj).addToBackStack(null).commit();
+
+        } else if (id == R.id.nav_dashboard) {
+            Dashboard fragobj=new Dashboard();
+            fragobj.setArguments(bundle);
+            fm.beginTransaction().replace(R.id.contenedor,fragobj).addToBackStack(null).commit();
+
+        } else if (id == R.id.nav_salir) {
             finish();
         }
 

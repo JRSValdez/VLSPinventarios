@@ -8,25 +8,25 @@
     <ScrollView
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="20dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="5dp">
 
                 <Button
                     android:id="@+id/btnPr"
-                    android:layout_width="135dp"
-                    android:layout_height="163dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:drawableBottom="@drawable/agregarprod"
                     android:textSize="10dp"
 
@@ -36,8 +36,8 @@
 
                 <Button
                     android:id="@+id/btnListarProd"
-                    android:layout_width="135dp"
-                    android:layout_height="163dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:drawableBottom="@drawable/verprod"
                     android:textSize="10dp"
                     android:text="VER PRODUCTOS"
@@ -49,12 +49,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="5dp">
 
                 <Button
                     android:id="@+id/btnVenta"
-                    android:layout_width="135dp"
-                    android:layout_height="163dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:drawableBottom="@drawable/ventasicono"
                     android:textSize="10dp"
                     android:text="VENTAS"
@@ -62,8 +63,8 @@
 
                 <Button
                     android:id="@+id/btnHistorialVentas"
-                    android:layout_width="135dp"
-                    android:layout_height="163dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:drawableBottom="@drawable/hventas"
                     android:textSize="10dp"
                     android:text="HISTORIAL VENTAS"
@@ -76,14 +77,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="horizontal">
-
-
+                android:orientation="horizontal"
+                android:padding="5dp">
 
                 <Button
                     android:id="@+id/btnCompra"
-                    android:layout_width="135dp"
-                    android:layout_height="163dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:drawableBottom="@drawable/comprasicono"
                     android:gravity="center"
                     android:textSize="10dp"
@@ -92,8 +92,8 @@
 
                 <Button
                     android:id="@+id/btnAggUser"
-                    android:layout_width="135dp"
-                    android:layout_height="163dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:drawableBottom="@drawable/user"
                     android:gravity="center"
                     android:textSize="10dp"
@@ -108,14 +108,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="horizontal">
-
-
+                android:orientation="horizontal"
+                android:padding="5dp">
 
                 <Button
                     android:id="@+id/btnConfiguracion"
-                    android:layout_width="135dp"
-                    android:layout_height="163dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:drawableBottom="@drawable/configuracionico"
                     android:gravity="center"
                     android:textSize="10dp"
@@ -124,8 +123,8 @@
 
                 <Button
                     android:id="@+id/btnSalirApp"
-                    android:layout_width="135dp"
-                    android:layout_height="163dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:drawableBottom="@drawable/salirapp"
                     android:gravity="center"
                     android:textSize="10dp"
