@@ -130,25 +130,25 @@ public class Dashboard extends Fragment {
         });
 
 
-        //btnAggUser = getView().findViewById(R.id.btnAggUser);
-        //btnAggUser.setOnClickListener(new View.OnClickListener() {
-           // @Override
-            //public void onClick(View view) {
+        btnAggUser = getView().findViewById(R.id.btnAggUser);
+        btnAggUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-               // NewUser nextFrag= new NewUser();
+                Usuarios nextFrag= new Usuarios();
 
-                //Bundle bundle=new Bundle();
+                Bundle bundle=new Bundle();
 
-                //bundle.putInt("idEmpresa", idEmpresa);
+                bundle.putInt("idEmpresa", idEmpresa);
 
-                //nextFrag.setArguments(bundle);
+                nextFrag.setArguments(bundle);
 
-                //getActivity().getSupportFragmentManager().beginTransaction()
-                        //.replace(R.id.contenedor, nextFrag)
-                        //.commit();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.contenedor, nextFrag)
+                        .commit();
 
-            //}
-        //});
+            }
+        });
 
        // btnConfig = getView().findViewById(R.id.btnConfiguracion);
         //btnConfig.setOnClickListener(new View.OnClickListener() {
