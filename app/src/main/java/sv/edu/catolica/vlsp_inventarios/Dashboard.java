@@ -12,14 +12,16 @@ import android.widget.Button;
 
 public class Dashboard extends Fragment {
 
-    Button btnPr, btnVentas, btnListarProd, btnListarVenta, btnListarHistorialVen, btnComp, btnAggUser, btnConfig, btnSalir;
-    int idEmpresa;
+    Button btnPr, btnListarCompras, btnListarProd, btnListarVenta, btnListarHistorialVen, btnComp, btnAggUser;
+    int idEmpresa, tipoU;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         idEmpresa = getArguments().getInt("idEmpresa");
+        tipoU = getArguments().getInt("tipoU");
+
         return inflater.inflate(R.layout.fragment_dashboard, container, false);
     }
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -31,18 +33,16 @@ public class Dashboard extends Fragment {
         btnPr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+            if(tipoU == 0){
                 AgregarProductos nextFrag= new AgregarProductos();
-
                 Bundle bundle=new Bundle();
-
                 bundle.putInt("idEmpresa", idEmpresa);
-
                 nextFrag.setArguments(bundle);
 
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.contenedor, nextFrag).addToBackStack(null)
                         .commit();
+            }
 
             }
         });
@@ -53,11 +53,8 @@ public class Dashboard extends Fragment {
             public void onClick(View view) {
 
                 ListarProductos nextFrag= new ListarProductos();
-
                 Bundle bundle=new Bundle();
-
                 bundle.putInt("idEmpresa", idEmpresa);
-
                 nextFrag.setArguments(bundle);
 
                 getActivity().getSupportFragmentManager().beginTransaction()
@@ -74,11 +71,8 @@ public class Dashboard extends Fragment {
             public void onClick(View view) {
 
                 Ventas nextFrag= new Ventas();
-
                 Bundle bundle=new Bundle();
-
                 bundle.putInt("idEmpresa", idEmpresa);
-
                 nextFrag.setArguments(bundle);
 
                 getActivity().getSupportFragmentManager().beginTransaction()
@@ -94,11 +88,8 @@ public class Dashboard extends Fragment {
             public void onClick(View view) {
 
                 ListarVentas nextFrag= new ListarVentas();
-
                 Bundle bundle=new Bundle();
-
                 bundle.putInt("idEmpresa", idEmpresa);
-
                 nextFrag.setArguments(bundle);
 
                 getActivity().getSupportFragmentManager().beginTransaction()
@@ -113,19 +104,33 @@ public class Dashboard extends Fragment {
         btnComp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(tipoU == 0){
+                    Compras nextFrag= new Compras();
+                    Bundle bundle=new Bundle();
+                    bundle.putInt("idEmpresa", idEmpresa);
+                    nextFrag.setArguments(bundle);
 
-                Compras nextFrag= new Compras();
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.contenedor, nextFrag).addToBackStack(null)
+                            .commit();
+                }
+            }
+        });
 
-                Bundle bundle=new Bundle();
+        btnListarCompras = getView().findViewById(R.id.btnHistorialCompras);
+        btnListarCompras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(tipoU == 0){
+                    ListarCompras nextFrag= new ListarCompras();
+                    Bundle bundle=new Bundle();
+                    bundle.putInt("idEmpresa", idEmpresa);
+                    nextFrag.setArguments(bundle);
 
-                bundle.putInt("idEmpresa", idEmpresa);
-
-                nextFrag.setArguments(bundle);
-
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.contenedor, nextFrag).addToBackStack(null)
-                        .commit();
-
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.contenedor, nextFrag).addToBackStack(null)
+                            .commit();
+                }
             }
         });
 
@@ -135,44 +140,18 @@ public class Dashboard extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Usuarios nextFrag= new Usuarios();
+                if(tipoU == 0){
+                    Usuarios nextFrag= new Usuarios();
+                    Bundle bundle=new Bundle();
+                    bundle.putInt("idEmpresa", idEmpresa);
+                    nextFrag.setArguments(bundle);
 
-                Bundle bundle=new Bundle();
-
-                bundle.putInt("idEmpresa", idEmpresa);
-
-                nextFrag.setArguments(bundle);
-
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.contenedor, nextFrag)
-                        .commit();
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.contenedor, nextFrag)
+                            .commit();
+                }
 
             }
         });
-
-       // btnConfig = getView().findViewById(R.id.btnConfiguracion);
-        //btnConfig.setOnClickListener(new View.OnClickListener() {
-           // @Override
-            //public void onClick(View view) {
-
-               // RegistrarEmpresa nextFrag= new RegistrarEmpresa();
-
-               // Bundle bundle=new Bundle();
-
-                //bundle.putInt("idEmpresa", idEmpresa);
-
-                //nextFrag.setArguments(bundle);
-
-                //getActivity().getSupportFragmentManager().beginTransaction()
-                        //.replace(R.id.contenedor, nextFrag)
-                        //.commit();
-
-            //}
-        //});
-
-
-
-
-
     }
 }

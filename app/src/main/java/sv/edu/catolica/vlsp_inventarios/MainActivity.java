@@ -92,6 +92,7 @@ public Toolbar toolbar;
         FragmentManager fm=getSupportFragmentManager();
         Bundle bundle=new Bundle();
         bundle.putInt("idEmpresa", user.idEmpresa);
+        bundle.putInt("tipoU", user.type);
         int id = item.getItemId();
         Dashboard dash=new Dashboard();
         dash.setArguments(bundle);
@@ -103,12 +104,16 @@ public Toolbar toolbar;
             fm.beginTransaction().replace(R.id.contenedor, fragobj).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_agregar_productos) {
-            AgregarProductos fragobj=new AgregarProductos();
-            fragobj.setArguments(bundle);
-            fm.beginTransaction().replace(R.id.contenedor,fragobj).addToBackStack(null).commit();
+            if(user.type == 0){
+                AgregarProductos fragobj=new AgregarProductos();
+                fragobj.setArguments(bundle);
+                fm.beginTransaction().replace(R.id.contenedor,fragobj).addToBackStack(null).commit();
+            }
 
         } else if (id == R.id.nav_configuracion) {
-            fm.beginTransaction().replace(R.id.contenedor,new Configuracion()).addToBackStack(null).commit();
+            if(user.type == 0){
+                fm.beginTransaction().replace(R.id.contenedor,new Configuracion()).addToBackStack(null).commit();
+            }
 
         }else if (id == R.id.nav_ver_ventas) {
             ListarVentas fragobj=new ListarVentas();
@@ -116,9 +121,11 @@ public Toolbar toolbar;
             fm.beginTransaction().replace(R.id.contenedor, fragobj).addToBackStack(null).commit();
 
         }else if (id == R.id.nav_compras) {
-            Compras fragobj=new Compras();
-            fragobj.setArguments(bundle);
-            fm.beginTransaction().replace(R.id.contenedor, fragobj).addToBackStack(null).commit();
+            if(user.type == 0){
+                Compras fragobj=new Compras();
+                fragobj.setArguments(bundle);
+                fm.beginTransaction().replace(R.id.contenedor, fragobj).addToBackStack(null).commit();
+            }
 
         } else if (id == R.id.nav_ventas) {
             Ventas fragobj=new Ventas();
@@ -126,9 +133,11 @@ public Toolbar toolbar;
             fm.beginTransaction().replace(R.id.contenedor,fragobj).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_usuarios) {
-            Usuarios fragobj=new Usuarios();
-            fragobj.setArguments(bundle);
-            fm.beginTransaction().replace(R.id.contenedor, fragobj).addToBackStack(null).commit();
+            if(user.type == 0){
+                Usuarios fragobj=new Usuarios();
+                fragobj.setArguments(bundle);
+                fm.beginTransaction().replace(R.id.contenedor, fragobj).addToBackStack(null).commit();
+            }
 
         } else if (id == R.id.nav_dashboard) {
             Dashboard fragobj=new Dashboard();
@@ -137,9 +146,11 @@ public Toolbar toolbar;
 
         }
         else if (id == R.id.nav_ver_compras) {
-            ListarCompras fragobj=new ListarCompras();
-            fragobj.setArguments(bundle);
-            fm.beginTransaction().replace(R.id.contenedor,fragobj).addToBackStack(null).commit();
+            if(user.type == 0){
+                ListarCompras fragobj=new ListarCompras();
+                fragobj.setArguments(bundle);
+                fm.beginTransaction().replace(R.id.contenedor,fragobj).addToBackStack(null).commit();
+            }
 
         } else if (id == R.id.nav_salir) {
             finish();

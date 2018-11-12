@@ -29,13 +29,14 @@ import Clases.ProductListAdapter;
 
 public class ListarProductos extends Fragment {
 
-    int idEmpresa;
+    int idEmpresa, tipoU;
     public int[] idPros;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       idEmpresa = getArguments().getInt("idEmpresa");
+        idEmpresa = getArguments().getInt("idEmpresa");
+        tipoU = getArguments().getInt("tipoU");
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_listarproductos, container, false);
@@ -97,21 +98,22 @@ public class ListarProductos extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                int idPro = idPros[i];
+                if(tipoU == 0){
+                    int idPro = idPros[i];
 
-                EditarProducto nextFrag= new EditarProducto();
+                    EditarProducto nextFrag= new EditarProducto();
 
-                Bundle bundle=new Bundle();
+                    Bundle bundle=new Bundle();
 
-                bundle.putInt("idPro", idPro);
-                bundle.putInt("idEmpresa", idEmpresa);
+                    bundle.putInt("idPro", idPro);
+                    bundle.putInt("idEmpresa", idEmpresa);
 
-                nextFrag.setArguments(bundle);
+                    nextFrag.setArguments(bundle);
 
-                getActivity().getSupportFragmentManager().beginTransaction()
-                      .replace(R.id.contenedor, nextFrag).addToBackStack(null)
-                    .commit();
-
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.contenedor, nextFrag).addToBackStack(null)
+                            .commit();
+                }
             }
         });
 

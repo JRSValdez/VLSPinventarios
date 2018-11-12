@@ -24,15 +24,15 @@ import Clases.VentasListAdapter;
 
 public class ListarVentas extends Fragment {
 
-    int idEmpresa;
+    int idEmpresa, tipoU;
     ListView listView;
     public int[] idVentas;
     public double[]  totales;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       idEmpresa = getArguments().getInt("idEmpresa");
-
+        idEmpresa = getArguments().getInt("idEmpresa");
+        tipoU = getArguments().getInt("tipoU");
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_listarventas, container, false);
     }
@@ -93,22 +93,23 @@ public class ListarVentas extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                int idVenta = idVentas[i];
-                double total = totales[i];
+                if(tipoU == 0){
+                    int idVenta = idVentas[i];
+                    double total = totales[i];
 
-                DetalleVenta nextFrag= new DetalleVenta();
+                    DetalleVenta nextFrag= new DetalleVenta();
 
-                Bundle bundle=new Bundle();
+                    Bundle bundle=new Bundle();
 
-                bundle.putInt("idVenta", idVenta);
-                bundle.putDouble("total", total);
+                    bundle.putInt("idVenta", idVenta);
+                    bundle.putDouble("total", total);
 
-                nextFrag.setArguments(bundle);
+                    nextFrag.setArguments(bundle);
 
-                getActivity().getSupportFragmentManager().beginTransaction()
-                      .replace(R.id.contenedor, nextFrag).addToBackStack(null)
-                    .commit();
-
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.contenedor, nextFrag).addToBackStack(null)
+                            .commit();
+                }
             }
         });
 

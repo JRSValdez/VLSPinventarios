@@ -91,13 +91,12 @@
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/btnAggUser"
+                    android:id="@+id/btnHistorialCompras"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableBottom="@drawable/user"
-                    android:gravity="center"
+                    android:drawableBottom="@drawable/hventas"
                     android:textSize="10dp"
-                    android:text="AGREGAR USUARIO"
+                    android:text="HISTORIAL COMPRAS"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -122,13 +121,13 @@
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/btnSalirApp"
+                    android:id="@+id/btnAggUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableBottom="@drawable/salirapp"
+                    android:drawableBottom="@drawable/user"
                     android:gravity="center"
                     android:textSize="10dp"
-                    android:text="SALIR"
+                    android:text="AGREGAR USUARIO"
                     android:textStyle="bold" />
 
             </LinearLayout>

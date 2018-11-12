@@ -53,7 +53,7 @@ public class ConnectionClass {
     }
 
     public Usuario iniciar_sesion(Usuario _user) throws SQLException {
-        String query = "SELECT EMPRESA.idEmpresa, user_user, user_password, CONCAT(user_name, ' ', user_lname), empresa_name FROM USUARIO " +
+        String query = "SELECT EMPRESA.idEmpresa, user_user, user_password, CONCAT(user_name, ' ', user_lname), empresa_name, user_type FROM USUARIO " +
                 " INNER JOIN EMPRESA ON EMPRESA.idEmpresa = USUARIO.idEmpresa WHERE user_user = ? AND user_password = ?";
         PreparedStatement st = null;
         st = this.conn.prepareStatement(query); //ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY
@@ -69,6 +69,7 @@ public class ConnectionClass {
             contra = rs.getString(3);
             _user.nombre = rs.getString(4);
             _user.empresa = rs.getString(5);
+            _user.type = rs.getInt(6);
         }
 
         if(user.equals(_user.usario) && contra.equals(_user.pass)){
