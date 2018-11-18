@@ -67,13 +67,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <EditText
-            android:id="@+id/txtPvence"
-            android:inputType="date"
-            android:hint="Fecha de vencimiento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
         <Button
             android:id="@+id/btnAggP"
             android:text="Agregar Producto"
