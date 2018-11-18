@@ -37,10 +37,10 @@ public class EditarProducto extends Fragment {
     ConnectionClass con = new ConnectionClass();
     Connection cn = con.CONN();
 
-    EditText NombreP, DescripP, CantP, CostoP, PrecioVentaP,FechaVencP;
+    EditText NombreP, DescripP, CantP, CostoP, PrecioVentaP;
     Spinner ListaCategorias;
     Button Edit, BtnDelete;
-    String Nombre, Descrip, FechaV, Stock, Costo, PrecioV, Categ;
+    String Nombre, Descrip, Stock, Costo, PrecioV, Categ;
     ImageView imgCat;
 
     int idEmpresa, idPro;
@@ -50,7 +50,7 @@ public class EditarProducto extends Fragment {
         List<String> values = new ArrayList<>();
         values.add("Seleccione");
         try{
-            String query="SELECT * FROM CATEGORIA WHERE idEmpresa="+idEmpresa;
+            String query="SELECT * FROM CATEGORIA";
             Statement st=cn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()){
@@ -84,7 +84,6 @@ public class EditarProducto extends Fragment {
         CantP=(EditText)getView().findViewById(R.id.txtCant);
         CostoP=(EditText)getView().findViewById(R.id.txtPcosto);
         PrecioVentaP=(EditText)getView().findViewById(R.id.txtPprecio);
-        FechaVencP=(EditText)getView().findViewById(R.id.txtPvence);
         ListaCategorias=(Spinner)getView().findViewById(R.id.spnCat);
         BtnDelete=(Button)getView().findViewById(R.id.btnDelete);
         imgCat=(ImageView)getView().findViewById(R.id.imgShow);
@@ -171,11 +170,10 @@ public class EditarProducto extends Fragment {
             public void onClick(View view) {
                 Nombre=NombreP.getText().toString();
                 Descrip=DescripP.getText().toString();
-                FechaV=FechaVencP.getText().toString();
                 Stock=CantP.getText().toString();
                 Costo=CostoP.getText().toString();
                 PrecioV=PrecioVentaP.getText().toString();
-                if(Nombre.isEmpty() || Descrip.isEmpty() || FechaV.isEmpty() || Stock.isEmpty() || Costo.isEmpty() || PrecioV.isEmpty()){
+                if(Nombre.isEmpty() || Descrip.isEmpty() || Stock.isEmpty() || Costo.isEmpty() || PrecioV.isEmpty()){
                     Toast.makeText(getActivity(), "Campos vacíos", Toast.LENGTH_SHORT).show();
                 }else if(ListaCategorias.getSelectedItemPosition()==0){
                     Toast.makeText(getActivity(), "Seleccione una categoría", Toast.LENGTH_SHORT).show();
@@ -184,7 +182,7 @@ public class EditarProducto extends Fragment {
                     String[] s =  itemText.split("-");
                     String idCat = s[0].trim();
                     try{
-                        String query = "UPDATE PRODUCTO SET idCat="+idCat+",producto_name='"+Nombre+"',producto_stock="+Stock+",producto_price="+PrecioV+",producto_cost="+Costo+",producto_desc='"+Descrip+"',producto_exp_date='"+FechaV+"' WHERE idProducto="+idPro;
+                        String query = "UPDATE PRODUCTO SET idCat="+idCat+",producto_name='"+Nombre+"',producto_stock="+Stock+",producto_price="+PrecioV+",producto_cost="+Costo+",producto_desc='"+Descrip+"' WHERE idProducto="+idPro;
                         PreparedStatement pst=cn.prepareStatement(query);
                         pst.executeUpdate();
                         Toast.makeText(getActivity(), "Registro actualizado con éxito", Toast.LENGTH_SHORT).show();
@@ -222,7 +220,7 @@ public class EditarProducto extends Fragment {
             Statement st = conn.createStatement();
 
             idEmpresa = (int)getArguments().getInt("idEmpresa");
-            ResultSet rs = st.executeQuery( "select p.producto_name,CONCAT(c.idCat, ' - ', c.cat_name),p.producto_stock,p.producto_cost,p.producto_price,p.producto_desc,p.producto_exp_date from producto p inner join categoria c on c.idCat = p.idCat where p.idEmpresa="+idEmpresa+" and p.idProducto="+idPro);
+            ResultSet rs = st.executeQuery( "select p.producto_name,CONCAT(c.idCat, ' - ', c.cat_name),p.producto_stock,p.producto_cost,p.producto_price,p.producto_desc from producto p inner join categoria c on c.idCat = p.idCat where p.idEmpresa="+idEmpresa+" and p.idProducto="+idPro);
             while ( rs.next() ){
                 Nombre=rs.getString(1);
                 Categ=rs.getString(2);
@@ -230,7 +228,6 @@ public class EditarProducto extends Fragment {
                 Costo=rs.getString(4);
                 PrecioV=rs.getString(5);
                 Descrip=rs.getString(6);
-                FechaV=rs.getString(7);
             }
         }
         catch ( Exception e ){
@@ -241,7 +238,6 @@ public class EditarProducto extends Fragment {
         CantP.setText(Stock);
         CostoP.setText(Costo);
         PrecioVentaP.setText(PrecioV);
-        FechaVencP.setText(FechaV);
         ListaCategorias.setSelection(obtenerPosicionItem(ListaCategorias, Categ));
     }
 

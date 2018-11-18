@@ -37,10 +37,10 @@ public class AgregarProductos extends Fragment {
     ConnectionClass con = new ConnectionClass();
     Connection cn = con.CONN();
 
-    EditText NombreP, DescripP, CantP, CostoP, PrecioVentaP,FechaVencP;
+    EditText NombreP, DescripP, CantP, CostoP, PrecioVentaP;
     Spinner ListaCategorias;
     Button Add;
-    String Nombre, Descrip, FechaV, Stock, Costo, PrecioV;
+    String Nombre, Descrip, Stock, Costo, PrecioV;
     ImageView imgCat;
 
     int idEmpresa;
@@ -50,7 +50,7 @@ public class AgregarProductos extends Fragment {
         List<String> values = new ArrayList<>();
         values.add("Seleccione");
         try{
-            String query="SELECT * FROM CATEGORIA WHERE idEmpresa="+idEmpresa;
+            String query="SELECT * FROM CATEGORIA";
             Statement st=cn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()){
@@ -80,7 +80,6 @@ public class AgregarProductos extends Fragment {
         CantP=(EditText)getView().findViewById(R.id.txtCant);
         CostoP=(EditText)getView().findViewById(R.id.txtPcosto);
         PrecioVentaP=(EditText)getView().findViewById(R.id.txtPprecio);
-        FechaVencP=(EditText)getView().findViewById(R.id.txtPvence);
         ListaCategorias=(Spinner)getView().findViewById(R.id.spnCat);
         Add=(Button)getView().findViewById(R.id.btnAggP);
         imgCat=(ImageView)getView().findViewById(R.id.imgShow);
@@ -125,11 +124,9 @@ public class AgregarProductos extends Fragment {
             public void onClick(View view) {
                 Nombre=NombreP.getText().toString();
                 Descrip=DescripP.getText().toString();
-                FechaV=FechaVencP.getText().toString();
                 Stock=CantP.getText().toString();
                 Costo=CostoP.getText().toString();
-                PrecioV=PrecioVentaP.getText().toString();
-                if(Nombre.isEmpty() || Descrip.isEmpty() || FechaV.isEmpty() || Stock.isEmpty() || Costo.isEmpty() || PrecioV.isEmpty()){
+                if(Nombre.isEmpty() || Descrip.isEmpty() || Stock.isEmpty() || Costo.isEmpty() || PrecioV.isEmpty()){
                     Toast.makeText(getActivity(), "Campos vacíos", Toast.LENGTH_SHORT).show();
                 }else if(ListaCategorias.getSelectedItemPosition()==0){
                     Toast.makeText(getActivity(), "Seleccione una categoría", Toast.LENGTH_SHORT).show();
@@ -139,8 +136,8 @@ public class AgregarProductos extends Fragment {
                     String idCat = s[0].trim();
                     try{
                         int Default=0;
-                        String query = "INSERT INTO PRODUCTO (idEmpresa,idCat,producto_name,producto_stock,producto_price,producto_cost,producto_desc,producto_exp_date,eliminado) VALUES " +
-                                "("+idEmpresa+","+idCat+",'"+Nombre+"',"+Stock+","+PrecioV+","+Costo+",'"+Descrip+"','"+FechaV+"',"+Default+")";
+                        String query = "INSERT INTO PRODUCTO (idEmpresa,idCat,producto_name,producto_stock,producto_price,producto_cost,producto_desc,eliminado) VALUES " +
+                                "("+idEmpresa+","+idCat+",'"+Nombre+"',"+Stock+","+PrecioV+","+Costo+",'"+Descrip+"',"+Default+")";
                         PreparedStatement pst=cn.prepareStatement(query);
                         pst.executeUpdate();
                         Toast.makeText(getActivity(), "Registro agregado con éxito", Toast.LENGTH_SHORT).show();
