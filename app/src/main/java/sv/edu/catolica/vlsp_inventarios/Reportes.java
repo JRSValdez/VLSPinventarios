@@ -31,7 +31,7 @@ import Clases.Venta;
 public class Reportes extends Fragment {
 
     Button btnReporteInv, btnReportVentas, btnReporteCompras;
-    private String empresa_name, reporte;
+    private String empresa_name, total;
     private  String[] headerInv = {"ID", "Categoría", "Producto", "Existencia"};
     private  String[] headerVentas = {"ID", "Fecha", "Total"};
     private TemplatePDFinv templateInv;
@@ -82,7 +82,7 @@ public class Reportes extends Fragment {
                 templateInv.addTitles("VLSP inventarios", "REPORTE DE VENTAS " + empresa_name, new Date().toString());
 
                 templateInv.createTable(headerVentas,getVentas());
-                pdf = templateInv.pdfFile;
+                templateInv.addParagraph("Total Ventas: " + total);
                 templateInv.closeDocument();
 
                 templateInv.viewPDF();
@@ -98,8 +98,8 @@ public class Reportes extends Fragment {
                 templateInv.addMetaData(empresa_name, "Reporte de Compras VLSP");
                 templateInv.addTitles("VLSP inventarios", "REPORTE DE COMPRAS " + empresa_name, new Date().toString());
 
-                templateInv.createTable(headerVentas,getVentas());
-                pdf = templateInv.pdfFile;
+                templateInv.createTable(headerVentas,getCompras());
+                templateInv.addParagraph("Total Compras: " + total);
                 templateInv.closeDocument();
 
                 templateInv.viewPDF();
@@ -155,14 +155,15 @@ public class Reportes extends Fragment {
             preparedStatement.setInt(1, idEmpresa);
             ResultSet rs = preparedStatement.executeQuery();
 
-
+            double tVentas =0;
             while (rs.next()) {
                 rows.add(new String[]{
                         rs.getString(1),
                         rs.getString(2),
                         rs.getString(3)});
+                tVentas += rs.getDouble(3);
             }
-
+            total = String.valueOf(tVentas);
         }
         catch ( Exception e )
         {
@@ -186,14 +187,15 @@ public class Reportes extends Fragment {
             preparedStatement.setInt(1, idEmpresa);
             ResultSet rs = preparedStatement.executeQuery();
 
-
+            double tCompra = 0;
             while (rs.next()) {
                 rows.add(new String[]{
                         rs.getString(1),
                         rs.getString(2),
                         rs.getString(3)});
+                tCompra += rs.getDouble(3);
             }
-
+            total = String.valueOf(tCompra);
         }
         catch ( Exception e )
         {

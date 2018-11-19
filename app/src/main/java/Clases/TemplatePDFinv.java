@@ -90,6 +90,18 @@ public class TemplatePDFinv {
         paragraph.add(childParagraph);
     }
 
+    public void addParagraph(String text){
+        try {
+            paragraph = new Paragraph(text, fHightText);
+            paragraph.setAlignment(Element.ALIGN_RIGHT);
+            paragraph.setSpacingAfter(10);
+            paragraph.setSpacingBefore(10);
+            document.add(paragraph);
+        } catch (Exception e){
+            Log.e("addParagraph", e.toString());
+        }
+    }
+
     public void createTable(String[] header, ArrayList<String[]> pros){
         try {
             paragraph = new Paragraph();
