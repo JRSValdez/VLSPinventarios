@@ -43,40 +43,81 @@
 
                 <EditText
                     android:id="@+id/txtNombre"
-                    android:hint="Nombre"
+                    android:hint=" Nombre"
                     android:layout_width="match_parent"
+                    android:background="@drawable/inputedit"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
                     android:layout_height="wrap_content" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
 
                 <EditText
                     android:id="@+id/txtApellido"
-                    android:hint="Apellido"
+                    android:hint=" Apellido"
                     android:layout_width="match_parent"
+                    android:background="@drawable/inputedit"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
                     android:layout_height="wrap_content" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
 
                 <EditText
                     android:id="@+id/txtEmail"
-                    android:hint="Correo Electrónico"
+                    android:hint=" Correo Electrónico"
                     android:inputType="textEmailAddress"
+                    android:background="@drawable/inputedit"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
 
                 <EditText
                     android:id="@+id/txtUser"
-                    android:hint="Usuario"
+                    android:hint=" Usuario"
+                    android:background="@drawable/inputedit"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
 
                 <EditText
                     android:id="@+id/txtPass1"
-                    android:hint="Contraseña"
+                    android:hint=" Contraseña"
                     android:inputType="textPassword"
+                    android:background="@drawable/inputedit"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
                 <EditText
                     android:id="@+id/txtPass2"
-                    android:hint="Contraseña"
+                    android:hint=" Contraseña"
                     android:inputType="textPassword"
+                    android:background="@drawable/inputedit"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <Space
@@ -86,6 +127,7 @@
                 <Button
                     android:id="@+id/btnNewUser"
                     android:text="Crear usuario"
+                    android:background="@drawable/btn_fondo_color_crearcuenta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

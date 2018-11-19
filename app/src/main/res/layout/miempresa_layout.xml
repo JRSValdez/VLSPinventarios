@@ -18,36 +18,67 @@
         android:src="@drawable/logoempresa"
         android:layout_width="match_parent"
         android:layout_height="200dp" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
 
     <EditText
         android:id="@+id/imgEmpresa"
-        android:hint="Buscar Imagen desde dispositivo"
+        android:hint=" Buscar Imagen desde dispositivo"
         android:layout_width="match_parent"
+        android:background="@drawable/inputedit"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:layout_height="wrap_content" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
 
     <EditText
         android:id="@+id/txtNombre"
-        android:hint="Nombre de la empresa"
+        android:hint=" Nombre de la empresa"
         android:layout_width="match_parent"
+        android:background="@drawable/inputedit"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:layout_height="wrap_content" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
 
     <EditText
         android:id="@+id/txtRurbo"
-        android:hint="Rubro de la empresa"
+        android:hint=" Rubro de la empresa"
+        android:background="@drawable/inputedit"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+
     <EditText
         android:id="@+id/txtTel"
-        android:hint="Teléfono"
+        android:hint=" Teléfono"
+        android:background="@drawable/inputedit"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
 
     <Button
         android:id="@+id/btnTerminar"
         android:text="Terminar"
         android:layout_width="match_parent"
-        android:background="@drawable/shape_button"
+        android:background="@drawable/btn_fondo_color_crearcuenta"
         android:layout_height="wrap_content" />
 
 </LinearLayout>

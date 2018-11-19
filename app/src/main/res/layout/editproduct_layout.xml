@@ -24,21 +24,32 @@
 
         <EditText
             android:id="@+id/imgEmpresa"
-            android:hint="Buscar Imagen desde dispositivo"
+            android:hint=" Buscar Imagen desde dispositivo"
             android:layout_width="match_parent"
+            android:background="@drawable/inputedit"
             android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
 
         <EditText
             android:id="@+id/txtPnombre"
-            android:hint="Nombre del producto"
+            android:hint=" Nombre del producto"
             android:layout_width="match_parent"
+            android:background="@drawable/inputedit"
             android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <EditText
             android:id="@+id/txtPid"
-            android:hint="ID automático o manual"
+            android:hint=" ID automático o manual"
             android:layout_width="match_parent"
+            android:background="@drawable/inputedit"
             android:layout_height="wrap_content" />
 
         <Spinner
@@ -47,34 +58,59 @@
             android:layout_height="wrap_content">
         </Spinner>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
         <EditText
             android:id="@+id/txtCant"
-            android:hint="Cantidad"
+            android:hint=" Cantidad"
+            android:background="@drawable/inputedit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <EditText
             android:id="@+id/txtPcosto"
             android:hint="Costo"
+            android:background="@drawable/inputedit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <EditText
             android:id="@+id/txtPprecio"
             android:hint="Precio de venta"
+            android:background="@drawable/inputedit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <EditText
             android:id="@+id/txtPvence"
             android:hint="Fecha de vencimiento"
+            android:background="@drawable/inputedit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <Button
             android:id="@+id/btnAggP"
             android:text="Editar Producto"
-            android:background="@drawable/shape_button"
+            android:background="@drawable/btn_fondo_color_crearcuenta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>

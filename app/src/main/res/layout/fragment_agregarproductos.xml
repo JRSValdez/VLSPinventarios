@@ -30,9 +30,16 @@
             android:src="@drawable/producto" />
         <EditText
             android:id="@+id/txtPnombre"
-            android:hint="Nombre del producto"
+            android:hint=" Nombre del producto"
             android:layout_width="match_parent"
+            android:background="@drawable/inputedit"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <Spinner
             android:id="@+id/spnCat"
@@ -40,37 +47,74 @@
             android:layout_height="wrap_content">
         </Spinner>
 
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+
         <EditText
             android:id="@+id/txtPdescrip"
-            android:hint="Descripción"
+            android:hint=" Descripción"
+            android:background="@drawable/inputedit"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
 
         <EditText
             android:id="@+id/txtCant"
-            android:hint="Cantidad"
+            android:hint=" Cantidad"
             android:inputType="numberDecimal"
             android:layout_width="match_parent"
+            android:background="@drawable/inputedit"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <EditText
             android:id="@+id/txtPcosto"
-            android:hint="Costo"
+            android:hint=" Costo"
             android:inputType="numberDecimal"
             android:layout_width="match_parent"
+            android:background="@drawable/inputedit"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+
 
         <EditText
             android:id="@+id/txtPprecio"
             android:inputType="numberDecimal"
-            android:hint="Precio de venta"
+            android:hint=" Precio de venta"
+            android:background="@drawable/inputedit"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <Button
             android:id="@+id/btnAggP"
             android:text="Agregar Producto"
-            android:background="@drawable/shape_button"
+            android:background="@drawable/btn_fondo_color_crearcuenta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
