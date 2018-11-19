@@ -126,6 +126,7 @@ public class AgregarProductos extends Fragment {
                 Descrip=DescripP.getText().toString();
                 Stock=CantP.getText().toString();
                 Costo=CostoP.getText().toString();
+                PrecioV = PrecioVentaP.getText().toString();
                 if(Nombre.isEmpty() || Descrip.isEmpty() || Stock.isEmpty() || Costo.isEmpty() || PrecioV.isEmpty()){
                     Toast.makeText(getActivity(), "Campos vacíos", Toast.LENGTH_SHORT).show();
                 }else if(ListaCategorias.getSelectedItemPosition()==0){

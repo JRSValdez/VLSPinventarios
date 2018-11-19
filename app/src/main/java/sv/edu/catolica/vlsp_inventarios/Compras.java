@@ -52,7 +52,7 @@ public class Compras extends Fragment {
     public List<String> Obt_Productos(){
         List<String> values = new ArrayList<>();
         try{
-            String query="SELECT * FROM producto WHERE producto_stock>=1 and idEmpresa="+idEmpresa + " and eliminado = 0";
+            String query="SELECT * FROM producto WHERE idEmpresa="+idEmpresa + " and eliminado = 0";
             Statement st=conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()){

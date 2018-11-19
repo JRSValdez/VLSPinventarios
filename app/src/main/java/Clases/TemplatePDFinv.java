@@ -25,7 +25,6 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 
-import sv.edu.catolica.vlsp_inventarios.Reportes;
 import sv.edu.catolica.vlsp_inventarios.ViewPDFActivity;
 
 
