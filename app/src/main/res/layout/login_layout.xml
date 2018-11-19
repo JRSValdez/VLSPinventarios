@@ -4,56 +4,105 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
+    android:background="@drawable/img"
     android:padding="20dp">
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="VLSP Inventarios"
+        android:textColor="@android:color/background_light"
+
         android:textSize="30dp"
         android:textStyle="bold" />
 
+
+
     <ImageView
-        android:layout_height="100dp"
+        android:layout_height="130dp"
         android:layout_gravity="center"
-        android:src="@drawable/login"
-        android:layout_width="100dp">
+        android:src="@drawable/log"
+        android:layout_width="150dp">
 
     </ImageView>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+
     <EditText
         android:id="@+id/txtUser"
-        android:text="jeffry"
+
         android:hint="Ingrese Usuario"
+        android:textColor="#fff"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/input"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColorHint="#ccc"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <EditText
-        android:id="@+id/txtPass"
-        android:text="jr2020"
-        android:hint="Ingrese Contraseña"
-        android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/btnLogin"
-        android:text="Iniciar Sesión"
-        android:layout_width="match_parent"
-        android:onClick="iniciar"
         android:layout_height="wrap_content" />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="20dp" />
 
-    <TextView
+    <EditText
+        android:id="@+id/txtPass"
+        android:hint="Ingrese Contraseña"
+        android:inputType="textPassword"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/input"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColorHint="#ccc"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:text="Iniciar Sesión"
+        android:layout_width="match_parent"
+        android:onClick="iniciar"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/btn_fondo_color"
+
+        android:textColor="#fff"
+        android:textSize="16sp"
+        android:elevation="5dp"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <Button
+        android:id="@+id/btnCrearCuenta"
         android:text="Crear Cuenta"
+        android:layout_width="match_parent"
         android:onClick="registrar"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/btn_fondo_color_crearcuenta"/>
+
+
 
 </LinearLayout>
