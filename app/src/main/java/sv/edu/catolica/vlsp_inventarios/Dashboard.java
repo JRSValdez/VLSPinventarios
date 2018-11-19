@@ -12,8 +12,9 @@ import android.widget.Button;
 
 public class Dashboard extends Fragment {
 
-    Button btnPr, btnListarCompras, btnListarProd, btnListarVenta, btnListarHistorialVen, btnComp, btnAggUser;
+    Button btnPr, btnListarCompras, btnListarProd, btnListarVenta, btnListarHistorialVen, btnComp, btnAggUser, btnReportes;
     int idEmpresa, tipoU;
+    String empresa;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -21,7 +22,7 @@ public class Dashboard extends Fragment {
         // Inflate the layout for this fragment
         idEmpresa = getArguments().getInt("idEmpresa");
         tipoU = getArguments().getInt("tipoU");
-
+        empresa = getArguments().getString("empresa");
         return inflater.inflate(R.layout.fragment_dashboard, container, false);
     }
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -153,5 +154,29 @@ public class Dashboard extends Fragment {
 
             }
         });
+
+        btnReportes = getView().findViewById(R.id.btnReportes);
+        btnReportes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(tipoU == 0){
+                    Reportes nextFrag= new Reportes();
+                    Bundle bundle=new Bundle();
+                    bundle.putInt("idEmpresa", idEmpresa);
+                    nextFrag.setArguments(bundle);
+                    bundle.putString("empresa", empresa);
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.contenedor, nextFrag)
+                            .commit();
+                }
+
+            }
+        });
+
+
+
+
+
     }
 }

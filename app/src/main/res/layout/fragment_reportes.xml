@@ -19,22 +19,46 @@
            android:textSize="30dp"
            android:textStyle="bold"/>
 
+
+       <ImageView
+           android:layout_height="130dp"
+           android:layout_gravity="center"
+           android:src="@drawable/reportes"
+           android:layout_width="150dp">
+
+       </ImageView>
+
+       <Space
+           android:layout_width="match_parent"
+           android:layout_height="20dp" />
+
+
        <Button
            android:id="@+id/btnReporteInv"
            android:text="Reporte Inventario"
-           android:layout_width="wrap_content"
+           android:layout_width="match_parent"
+           android:background="@drawable/btn_fondo_color_crearcuenta"
            android:layout_height="wrap_content" />
+
+       <Space
+           android:layout_width="match_parent"
+           android:layout_height="20dp" />
 
        <Button
            android:id="@+id/btnReporteVentas"
            android:text="Reporte de Ventas realizadas"
-           android:layout_width="wrap_content"
+           android:layout_width="match_parent"
+           android:background="@drawable/btn_fondo_color_crearcuenta"
            android:layout_height="wrap_content" />
+       <Space
+           android:layout_width="match_parent"
+           android:layout_height="20dp" />
 
        <Button
            android:id="@+id/btnReporteCompras"
            android:text="Reporte de Compras realizadas"
-           android:layout_width="wrap_content"
+           android:background="@drawable/btn_fondo_color_crearcuenta"
+           android:layout_width="match_parent"
            android:layout_height="wrap_content" />
 
 
