@@ -111,12 +111,7 @@ public Toolbar toolbar;
                 fm.beginTransaction().replace(R.id.contenedor,fragobj).addToBackStack(null).commit();
             }
 
-        } else if (id == R.id.nav_configuracion) {
-            if(user.type == 0){
-                fm.beginTransaction().replace(R.id.contenedor,new Configuracion()).addToBackStack(null).commit();
-            }
-
-        }else if (id == R.id.nav_ver_ventas) {
+        } else if (id == R.id.nav_ver_ventas) {
             ListarVentas fragobj=new ListarVentas();
             fragobj.setArguments(bundle);
             fm.beginTransaction().replace(R.id.contenedor, fragobj).addToBackStack(null).commit();

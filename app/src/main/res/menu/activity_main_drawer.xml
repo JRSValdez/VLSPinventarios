@@ -41,10 +41,6 @@
                 android:icon="@drawable/ic_pie_chart_black_24dp"
                 android:title="Reportes" />
             <item
-                android:id="@+id/nav_configuracion"
-                android:icon="@drawable/ic_settings_black_24dp"
-                android:title="Configuracion" />
-            <item
                 android:id="@+id/nav_usuarios"
                 android:icon="@drawable/ic_group_black_24dp"
                 android:title="Usuarios" />

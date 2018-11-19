@@ -18,58 +18,6 @@
             android:text="Lista de las ventas realizadas"
             android:textSize="20dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Buscar producto:"
-                    android:textSize="16dp" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Producto" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Listar por categoría:"
-                    android:textSize="16dp" />
-
-                <Spinner
-                    android:id="@+id/spProductos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000"></Spinner>
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/btnBuscar"
-                android:text="Buscar"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/btn_fondo_color_crearcuenta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
 
         <Space
             android:layout_width="match_parent"
