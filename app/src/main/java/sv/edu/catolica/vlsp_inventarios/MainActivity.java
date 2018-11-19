@@ -152,6 +152,14 @@ public Toolbar toolbar;
                 fm.beginTransaction().replace(R.id.contenedor,fragobj).addToBackStack(null).commit();
             }
 
+        }
+        else if (id == R.id.nav_reportes) {
+            if (user.type == 0) {
+                Reportes fragobj = new Reportes();
+                bundle.putString("empresa", user.empresa);
+                fragobj.setArguments(bundle);
+                fm.beginTransaction().replace(R.id.contenedor, fragobj).addToBackStack(null).commit();
+            }
         } else if (id == R.id.nav_salir) {
             finish();
         }
