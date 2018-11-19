@@ -60,7 +60,7 @@ public class ListarProductos extends Fragment {
 
             idEmpresa = (int)getArguments().getInt("idEmpresa");
             String query = "select p.idProducto, p.producto_name, p.producto_stock, c.cat_name from producto p " +
-                    " inner join categoria c on c.idCat = p.idCat where p.idEmpresa = ?";
+                    " inner join categoria c on c.idCat = p.idCat where p.idEmpresa = ? and eliminado = 0";
 
             PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
             preparedStatement.setInt(1, idEmpresa);

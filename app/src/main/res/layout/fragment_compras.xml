@@ -26,32 +26,37 @@
             <LinearLayout
                 android:id="@+id/lnlProductoVenta"
                 android:padding="5dp"
-                android:background="#d5d5d5"
+                android:background="#83d5d5d5"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/tvnameP"
-                    android:text="Galaxy S9"
-                    android:textSize="20dp"
-                    android:gravity="center_horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
 
                 <ImageView
                     android:id="@+id/imgP"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
-                    android:layout_width="125dp"
-                    android:layout_height="125dp" />
+                    android:src="@drawable/agg_compras"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
+
+                <TextView
+                    android:id="@+id/tvnameP"
+                    android:text="Galaxy S9"
+                    android:textSize="20dp"
+                    android:textColor="#000"
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
                 <TextView
                     android:id="@+id/tvprecioP"
+                    android:textColor="#000"
                     android:text="Precio: $12000"
                     android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/tvdescP"
+                    android:textColor="#000"
                     android:layout_marginTop="8dp"
                     android:text="Descripcion"
                     android:gravity="center_horizontal"
@@ -78,6 +83,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Cantidad:"
+                            android:textColor="#000"
                             />
                     <EditText
                         android:id="@+id/etCantidad"
@@ -138,18 +144,21 @@
                         <TextView
                             android:id="@+id/tvNombre"
                             android:text="Nombre"
+                            android:textColor="#000"
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tvprecio"
                             android:text="Precio"
+                            android:textColor="#000"
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tvCantidad"
                             android:text="Cantidad"
+                            android:textColor="#000"
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -159,7 +168,7 @@
                 <LinearLayout
                     android:id="@+id/lnProductoVenta"
                     android:padding="10dp"
-                    android:background="#d5d5d5"
+                    android:background="#83d5d5d5"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -168,6 +177,8 @@
                         android:id="@+id/tvTotal"
                         android:layout_marginBottom="5dp"
                         android:text="Total de la venta: $0.00"
+                        android:textColor="#000"
+                        android:textSize="20dp"
                         android:gravity="center_horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -178,6 +189,7 @@
     android:layout_gravity="center">
                     <Button
                         android:id="@+id/btnAggP"
+                        android:layout_marginRight="20dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -188,8 +200,9 @@
                         android:id="@+id/btnReiniciar"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
+                        android:textColor="#ff0000"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorAccent"
+                        android:background="@drawable/shape_button"
                         android:text="Reiniciar" />
 </LinearLayout>
                 </LinearLayout>

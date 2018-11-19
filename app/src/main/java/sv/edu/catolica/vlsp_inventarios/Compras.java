@@ -52,7 +52,7 @@ public class Compras extends Fragment {
     public List<String> Obt_Productos(){
         List<String> values = new ArrayList<>();
         try{
-            String query="SELECT * FROM producto WHERE producto_stock>=1 and idEmpresa="+idEmpresa;
+            String query="SELECT * FROM producto WHERE producto_stock>=1 and idEmpresa="+idEmpresa + " and eliminado = 0";
             Statement st=conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()){
@@ -117,8 +117,11 @@ public class Compras extends Fragment {
                         pd=j;
                     }
                 }
+                int cantidad;
+                try{
+                    cantidad = Integer.parseInt(etCantidad.getText().toString());
 
-                    if (Integer.parseInt(etCantidad.getText().toString())>0 && etCantidad.getText().length() > 0) {
+                    if (Integer.parseInt(etCantidad.getText().toString())>0 && cantidad > 0) {
 
                         //Guardando registro seleccionado en la lista de productos a vender
                         if (producoExistente==false){
@@ -160,6 +163,9 @@ public class Compras extends Fragment {
     }else{
     Toast.makeText(getContext(), "cantidad no válida",Toast.LENGTH_SHORT).show();
 }
+                }catch (NumberFormatException ex){
+                    Toast.makeText(getContext(), "Cantidad Vacia", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

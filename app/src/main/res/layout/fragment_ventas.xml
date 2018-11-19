@@ -26,37 +26,43 @@
             <LinearLayout
                 android:id="@+id/lnlProductoVenta"
                 android:padding="5dp"
-                android:background="#d5d5d5"
+                android:background="#83d5d5d5"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/tvnameP"
-                    android:text="Galaxy S9"
-                    android:textSize="20dp"
-                    android:gravity="center_horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
 
                 <ImageView
                     android:id="@+id/imgP"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
-                    android:layout_width="125dp"
-                    android:layout_height="125dp" />
+                    android:src="@drawable/vender"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
+
+                <TextView
+                    android:id="@+id/tvnameP"
+                    android:text="Galaxy S9"
+                    android:textSize="20dp"
+                    android:textColor="#000"
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
                 <TextView
                     android:id="@+id/tvprecioP"
                     android:text="Precio: $12000"
+                    android:textColor="#000"
                     android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+
                 <TextView
                     android:id="@+id/tvdescP"
-                    android:layout_marginTop="8dp"
-                    android:text="Descripcion"
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="Descripcion"
+                    android:textColor="#000" />
                 <LinearLayout
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
@@ -66,8 +72,8 @@
                     <Spinner
                         android:id="@+id/spProductos"
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp">
-                    </Spinner>
+                        android:layout_height="20dp"
+                        android:textColor="#000"></Spinner>
                     <LinearLayout
                         android:gravity="center_horizontal"
                         android:orientation="horizontal"
@@ -78,13 +84,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Cantidad:"
-                            />
-                    <EditText
-                        android:id="@+id/etCantidad"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:text="1"
-                        android:inputType="number"/>
+                            android:textColor="#000"/>
+
+                        <EditText
+                            android:id="@+id/etCantidad"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:text="1" />
 
                     </LinearLayout>
                     <LinearLayout
@@ -138,18 +145,21 @@
                         <TextView
                             android:id="@+id/tvNombre"
                             android:text="Nombre"
+                            android:textColor="#000"
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tvprecio"
                             android:text="Precio"
+                            android:textColor="#000"
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tvCantidad"
                             android:text="Cantidad"
+                            android:textColor="#000"
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -159,7 +169,7 @@
                 <LinearLayout
                     android:id="@+id/lnProductoVenta"
                     android:padding="10dp"
-                    android:background="#d5d5d5"
+                    android:background="#83d5d5d5"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -168,6 +178,8 @@
                         android:id="@+id/tvTotal"
                         android:layout_marginBottom="5dp"
                         android:text="Total de la venta: $48000"
+                        android:textColor="#000"
+                        android:textSize="20dp"
                         android:gravity="center_horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -178,6 +190,7 @@
     android:layout_gravity="center">
                     <Button
                         android:id="@+id/btnAggP"
+                        android:layout_marginRight="20dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -187,9 +200,10 @@
                     <Button
                         android:id="@+id/btnReiniciar"
                         android:layout_gravity="center_horizontal"
+                        android:textColor="#ff0000"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorAccent"
+                        android:background="@drawable/shape_button"
                         android:text="Reiniciar" />
 </LinearLayout>
                 </LinearLayout>

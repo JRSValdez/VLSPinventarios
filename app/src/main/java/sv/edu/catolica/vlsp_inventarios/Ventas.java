@@ -38,7 +38,7 @@ public class Ventas extends Fragment {
 
     ConnectionClass ConexionDB = new ConnectionClass();
   Connection conn = ConexionDB.CONN();
-
+String cant;
     Spinner ProductList;
     Button btnOK, btnEliminar, btnReinicio, btnTerminar;
     EditText etCantidad;
@@ -56,7 +56,7 @@ public class Ventas extends Fragment {
     public List<String> Obt_Productos(){
         List<String> values = new ArrayList<>();
         try{
-            String query="SELECT * FROM producto WHERE producto_stock>=1 and idEmpresa="+idEmpresa;
+            String query="SELECT * FROM producto WHERE producto_stock>=1 and idEmpresa="+idEmpresa + " and eliminado = 0";
             Statement st=conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()){
@@ -121,8 +121,11 @@ public class Ventas extends Fragment {
                         pd=j;
                     }
                 }
+                int cantidad;
+                try{
+                    cantidad = Integer.parseInt(etCantidad.getText().toString());
 
-                    if (productoInfo.get(IndSelected).producto_stock >= Integer.parseInt(etCantidad.getText().toString()) && etCantidad.getText().length() > 0) {
+                    if (productoInfo.get(IndSelected).producto_stock >= Integer.parseInt(etCantidad.getText().toString()) && cantidad > 0) {
 
                         //Guardando registro seleccionado en la lista de productos a vender
                         if (producoExistente==false){
@@ -163,9 +166,13 @@ public class Ventas extends Fragment {
                     producoExistente=false;
                     total=0;
     Toast.makeText(getContext(), "Item agregado",Toast.LENGTH_SHORT).show();
+
     }else{
     Toast.makeText(getContext(), "Stock Insuficiente",Toast.LENGTH_SHORT).show();
 }
+                }catch (NumberFormatException ex){
+                    Toast.makeText(getContext(), "Cantidad Vacia", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
