@@ -39,14 +39,23 @@
             <EditText
                 android:id="@+id/txtCnombre"
                 android:hint="Nombre de la categoria"
+                android:background="@drawable/inputedit"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
 
 
             <Button
                 android:id="@+id/btnAggC"
                 android:text="Agregar Categoria"
-                android:background="@drawable/shape_button"
+                android:background="@drawable/btn_fondo_color_crearcuenta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>

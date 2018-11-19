@@ -4,7 +4,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:padding="20dp"
     android:layout_width="match_parent"
-    android:background="@drawable/pru"
     android:layout_height="match_parent">
 
     <TextView
@@ -31,7 +30,7 @@
         android:textColor="#fff"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/input"
+        android:background="@drawable/inputedit"
         android:paddingLeft="20dp"
         android:paddingRight="10dp"
         android:paddingTop="10dp"

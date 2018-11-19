@@ -64,6 +64,7 @@
                     android:id="@+id/btnBuscar"
                     android:text="Buscar"
                     android:layout_gravity="center_horizontal"
+                    android:background="@drawable/btn_fondo_color_crearcuenta"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
