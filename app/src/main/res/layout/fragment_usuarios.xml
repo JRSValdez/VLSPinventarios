@@ -46,8 +46,9 @@
                     android:hint=" Nombre"
                     android:layout_width="match_parent"
                     android:background="@drawable/inputedit"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/black"
                     android:layout_height="wrap_content" />
 
                 <Space
@@ -60,8 +61,9 @@
                     android:hint=" Apellido"
                     android:layout_width="match_parent"
                     android:background="@drawable/inputedit"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/black"
                     android:layout_height="wrap_content" />
 
                 <Space
@@ -74,8 +76,9 @@
                     android:hint=" Correo Electrónico"
                     android:inputType="textEmailAddress"
                     android:background="@drawable/inputedit"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -87,8 +90,9 @@
                     android:id="@+id/txtUser"
                     android:hint=" Usuario"
                     android:background="@drawable/inputedit"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -102,8 +106,9 @@
                     android:hint=" Contraseña"
                     android:inputType="textPassword"
                     android:background="@drawable/inputedit"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -116,8 +121,9 @@
                     android:hint=" Contraseña"
                     android:inputType="textPassword"
                     android:background="@drawable/inputedit"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <Space

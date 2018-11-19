@@ -34,7 +34,7 @@
             android:title="Ver mis compras" />
     </group>
 
-    <item android:title="otros">
+    <item android:title="Otros">
         <menu>
             <item
                 android:id="@+id/nav_reportes"

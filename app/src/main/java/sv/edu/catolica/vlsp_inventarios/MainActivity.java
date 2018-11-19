@@ -48,6 +48,7 @@ public Toolbar toolbar;
         FragmentManager fm=getSupportFragmentManager();
         Bundle bundle=new Bundle();
         bundle.putInt("idEmpresa", user.idEmpresa);
+        bundle.putString("empresa", user.empresa);
         Dashboard fragobj=new Dashboard();
         fragobj.setArguments(bundle);
         fm.beginTransaction().replace(R.id.contenedor, fragobj).commit();
@@ -141,6 +142,7 @@ public Toolbar toolbar;
 
         } else if (id == R.id.nav_dashboard) {
             Dashboard fragobj=new Dashboard();
+            bundle.putString("empresa", user.empresa);
             fragobj.setArguments(bundle);
             fm.beginTransaction().replace(R.id.contenedor,fragobj).addToBackStack(null).commit();
 

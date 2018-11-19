@@ -27,8 +27,9 @@
         android:hint=" Buscar Imagen desde dispositivo"
         android:layout_width="match_parent"
         android:background="@drawable/inputedit"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
+        android:padding="10dp"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/black"
         android:layout_height="wrap_content" />
     <Space
         android:layout_width="match_parent"
@@ -39,8 +40,9 @@
         android:hint=" Nombre de la empresa"
         android:layout_width="match_parent"
         android:background="@drawable/inputedit"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
+        android:padding="10dp"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/black"
         android:layout_height="wrap_content" />
 
     <Space
@@ -52,8 +54,9 @@
         android:id="@+id/txtRurbo"
         android:hint=" Rubro de la empresa"
         android:background="@drawable/inputedit"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
+        android:padding="10dp"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -66,8 +69,9 @@
         android:id="@+id/txtTel"
         android:hint=" Teléfono"
         android:background="@drawable/inputedit"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
+        android:padding="10dp"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <Space
